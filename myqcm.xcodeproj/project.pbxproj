@@ -15,6 +15,13 @@
 		34CEF0EE1C8DB21B000E9C13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34CEF0ED1C8DB21B000E9C13 /* Assets.xcassets */; };
 		34CEF0F11C8DB21B000E9C13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34CEF0EF1C8DB21B000E9C13 /* LaunchScreen.storyboard */; };
 		34CEF0FC1C8DB21B000E9C13 /* myqcmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF0FB1C8DB21B000E9C13 /* myqcmTests.m */; };
+		34CEF10B1C8DB6E2000E9C13 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF10A1C8DB6E2000E9C13 /* User.m */; };
+		34CEF10F1C8DB996000E9C13 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF10E1C8DB996000E9C13 /* Group.m */; };
+		34CEF1151C8DBBE9000E9C13 /* CategoryQcm.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF1141C8DBBE9000E9C13 /* CategoryQcm.m */; };
+		34CEF1181C8DBCA5000E9C13 /* Qcm.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF1171C8DBCA5000E9C13 /* Qcm.m */; };
+		34CEF11B1C8DBE62000E9C13 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF11A1C8DBE62000E9C13 /* Question.m */; };
+		34CEF11E1C8DBF2A000E9C13 /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF11D1C8DBF2A000E9C13 /* Answer.m */; };
+		34CEF1211C8DC267000E9C13 /* QcmUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF1201C8DC267000E9C13 /* QcmUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,20 @@
 		34CEF0F71C8DB21B000E9C13 /* myqcmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myqcmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34CEF0FB1C8DB21B000E9C13 /* myqcmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myqcmTests.m; sourceTree = "<group>"; };
 		34CEF0FD1C8DB21B000E9C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34CEF1091C8DB6E2000E9C13 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = entity/User.h; sourceTree = "<group>"; };
+		34CEF10A1C8DB6E2000E9C13 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = entity/User.m; sourceTree = "<group>"; };
+		34CEF10D1C8DB996000E9C13 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Group.h; path = entity/Group.h; sourceTree = "<group>"; };
+		34CEF10E1C8DB996000E9C13 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Group.m; path = entity/Group.m; sourceTree = "<group>"; };
+		34CEF1131C8DBBE9000E9C13 /* CategoryQcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryQcm.h; path = entity/CategoryQcm.h; sourceTree = "<group>"; };
+		34CEF1141C8DBBE9000E9C13 /* CategoryQcm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryQcm.m; path = entity/CategoryQcm.m; sourceTree = "<group>"; };
+		34CEF1161C8DBCA5000E9C13 /* Qcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Qcm.h; path = entity/Qcm.h; sourceTree = "<group>"; };
+		34CEF1171C8DBCA5000E9C13 /* Qcm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Qcm.m; path = entity/Qcm.m; sourceTree = "<group>"; };
+		34CEF1191C8DBE62000E9C13 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Question.h; path = entity/Question.h; sourceTree = "<group>"; };
+		34CEF11A1C8DBE62000E9C13 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Question.m; path = entity/Question.m; sourceTree = "<group>"; };
+		34CEF11C1C8DBF2A000E9C13 /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Answer.h; path = entity/Answer.h; sourceTree = "<group>"; };
+		34CEF11D1C8DBF2A000E9C13 /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Answer.m; path = entity/Answer.m; sourceTree = "<group>"; };
+		34CEF11F1C8DC267000E9C13 /* QcmUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QcmUser.h; path = entity/QcmUser.h; sourceTree = "<group>"; };
+		34CEF1201C8DC267000E9C13 /* QcmUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QcmUser.m; path = entity/QcmUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +104,9 @@
 		34CEF0DD1C8DB21B000E9C13 /* myqcm */ = {
 			isa = PBXGroup;
 			children = (
+				34CEF1081C8DB50C000E9C13 /* view */,
+				34CEF1071C8DB502000E9C13 /* entity */,
+				34CEF1061C8DB427000E9C13 /* data */,
 				34CEF0E11C8DB21B000E9C13 /* AppDelegate.h */,
 				34CEF0E21C8DB21B000E9C13 /* AppDelegate.m */,
 				34CEF0E41C8DB21B000E9C13 /* ViewController.h */,
@@ -112,6 +136,41 @@
 				34CEF0FD1C8DB21B000E9C13 /* Info.plist */,
 			);
 			path = myqcmTests;
+			sourceTree = "<group>";
+		};
+		34CEF1061C8DB427000E9C13 /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		34CEF1071C8DB502000E9C13 /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				34CEF1091C8DB6E2000E9C13 /* User.h */,
+				34CEF10A1C8DB6E2000E9C13 /* User.m */,
+				34CEF10D1C8DB996000E9C13 /* Group.h */,
+				34CEF10E1C8DB996000E9C13 /* Group.m */,
+				34CEF1131C8DBBE9000E9C13 /* CategoryQcm.h */,
+				34CEF1141C8DBBE9000E9C13 /* CategoryQcm.m */,
+				34CEF1161C8DBCA5000E9C13 /* Qcm.h */,
+				34CEF1171C8DBCA5000E9C13 /* Qcm.m */,
+				34CEF1191C8DBE62000E9C13 /* Question.h */,
+				34CEF11A1C8DBE62000E9C13 /* Question.m */,
+				34CEF11C1C8DBF2A000E9C13 /* Answer.h */,
+				34CEF11D1C8DBF2A000E9C13 /* Answer.m */,
+				34CEF11F1C8DC267000E9C13 /* QcmUser.h */,
+				34CEF1201C8DC267000E9C13 /* QcmUser.m */,
+			);
+			name = entity;
+			sourceTree = "<group>";
+		};
+		34CEF1081C8DB50C000E9C13 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,10 +273,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34CEF10B1C8DB6E2000E9C13 /* User.m in Sources */,
+				34CEF1181C8DBCA5000E9C13 /* Qcm.m in Sources */,
 				34CEF0E61C8DB21B000E9C13 /* ViewController.m in Sources */,
 				34CEF0EC1C8DB21B000E9C13 /* myqcm.xcdatamodeld in Sources */,
+				34CEF1211C8DC267000E9C13 /* QcmUser.m in Sources */,
+				34CEF10F1C8DB996000E9C13 /* Group.m in Sources */,
 				34CEF0E31C8DB21B000E9C13 /* AppDelegate.m in Sources */,
+				34CEF11B1C8DBE62000E9C13 /* Question.m in Sources */,
 				34CEF0E01C8DB21B000E9C13 /* main.m in Sources */,
+				34CEF1151C8DBBE9000E9C13 /* CategoryQcm.m in Sources */,
+				34CEF11E1C8DBF2A000E9C13 /* Answer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
