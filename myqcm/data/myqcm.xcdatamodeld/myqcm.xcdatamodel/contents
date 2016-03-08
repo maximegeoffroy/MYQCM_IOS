@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
-    <entity name="Answer" syncable="YES">
-        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="is_valid" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="point" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
-    </entity>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="CategoryQcm" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,19 +9,15 @@
         <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="group" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Qcm" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="end_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
-    </entity>
-    <entity name="QcmUser" syncable="YES">
-        <attribute name="is_done" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="note" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="qcm_categoryqcm" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryQcm" syncable="YES"/>
     </entity>
     <entity name="Question" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,15 +32,13 @@
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="user" inverseEntity="Group" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Answer" positionX="63" positionY="63" width="128" height="120"/>
-        <element name="CategoryQcm" positionX="36" positionY="54" width="128" height="88"/>
-        <element name="Group" positionX="43" positionY="-117" width="128" height="105"/>
-        <element name="Qcm" positionX="45" positionY="45" width="128" height="135"/>
-        <element name="QcmUser" positionX="81" positionY="72" width="128" height="75"/>
-        <element name="Question" positionX="54" positionY="54" width="128" height="90"/>
-        <element name="User" positionX="36" positionY="108" width="128" height="165"/>
+        <element name="User" positionX="-63" positionY="-127" width="128" height="163"/>
+        <element name="Group" positionX="-56" positionY="225" width="128" height="88"/>
+        <element name="CategoryQcm" positionX="-315" positionY="-135" width="128" height="88"/>
+        <element name="Question" positionX="-153" positionY="45" width="128" height="90"/>
+        <element name="Qcm" positionX="-306" positionY="153" width="128" height="148"/>
     </elements>
 </model>

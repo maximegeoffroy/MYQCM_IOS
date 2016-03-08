@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "User.h"
+#import "UserSQLiteAdapter.h"
+#import "GroupSQLiteAdapter.h"
+#import "CategoryQcmSQLiteAdapter.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +21,49 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSDate* date = [NSDate new];
+//    
+//    User* u = [User new];
+//    u.username = @"test";
+//    u.password = @"test";
+//    u.name = @"Lepage";
+//    u.firstname = @"Alexis";
+//    u.email = @"lepage@hotmail.fr";
+//    u.created_at = date;
+//    u.updated_at = date;
+    
+//    Group* g = [Group new];
+//    
+//    g.name = @"BTS DEV";
+//    g.created_at = date;
+//    g.updated_at = date;
+//    
+//    GroupSQLiteAdapter* adapter = [GroupSQLiteAdapter new];
+//    int id = [adapter insert:g];
+//    
+//    
+//    UserSQLiteAdapter* useradapter = [UserSQLiteAdapter new];
+//    User* user = [useradapter getByUsername:@"test"];
+//    
+//    [user setValue:[NSSet setWithObject:g] forKey:@"group"];
+    
+    CategoryQcm* cat = [CategoryQcm new];
+    cat.name = @"Gestion de projet";
+    cat.created_at = date;
+    cat.updated_at = date;
+    
+    CategoryQcmSQLiteAdapter* catAdapter = [CategoryQcmSQLiteAdapter new];
+    [catAdapter insert:cat];
+    
+    NSArray* cats = [catAdapter getAll];
+    
+    for (NSManagedObject* cat in cats) {
+        NSLog(@"Categorie: %@", [cat valueForKey:@"name"]);
+    }
+    
+    //NSLog(@"id: %d", id);
+    
     return YES;
 }
 
