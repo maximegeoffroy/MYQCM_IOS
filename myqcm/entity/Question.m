@@ -9,6 +9,6 @@
 #import "Question.h"
 
 @implementation Question
-@synthesize content,created_at,updated_at,qcm;
+@synthesize content,created_at,updated_at,qcm,answers;
 
 @end

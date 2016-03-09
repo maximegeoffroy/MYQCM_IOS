@@ -20,6 +20,7 @@
 + (NSString*) DB_USER_EMAIL;
 + (NSString*) DB_USER_DATECREATED;
 + (NSString*) DB_USER_DATEUPDATED;
++ (NSString*) DB_USER_GROUP;
 
 - (void)insert:(User*)user;
 - (User *)getByUsername:(NSString *)username;

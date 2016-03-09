@@ -9,6 +9,6 @@
 #import "User.h"
 
 @implementation User
-@synthesize username,password,name,firstname,email,created_at,updated_at,group;
+@synthesize username,password,name,firstname,email,created_at,updated_at,group,qcmUsers;
 
 @end

@@ -8,9 +8,11 @@
 
 #import "AppDelegate.h"
 #import "User.h"
+#import "Qcm.h"
 #import "UserSQLiteAdapter.h"
 #import "GroupSQLiteAdapter.h"
 #import "CategoryQcmSQLiteAdapter.h"
+#import "QcmSQLiteAdapter.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +25,8 @@
     // Override point for customization after application launch.
     
     NSDate* date = [NSDate new];
-//    
+    
+    
 //    User* u = [User new];
 //    u.username = @"test";
 //    u.password = @"test";
@@ -32,37 +35,110 @@
 //    u.email = @"lepage@hotmail.fr";
 //    u.created_at = date;
 //    u.updated_at = date;
-    
+//    
+//    User* u1 = [User new];
+//    u1.username = @"maxy";
+//    u1.password = @"passw0rd";
+//    u1.name = @"Geoffroy";
+//    u1.firstname = @"Maxime";
+//    u1.email = @"geoffroy@hotmail.fr";
+//    u1.created_at = date;
+//    u1.updated_at = date;
+//    
 //    Group* g = [Group new];
 //    
-//    g.name = @"BTS DEV";
+//    g.name = @"CDSM";
 //    g.created_at = date;
 //    g.updated_at = date;
 //    
-//    GroupSQLiteAdapter* adapter = [GroupSQLiteAdapter new];
-//    int id = [adapter insert:g];
-//    
+//    u.group = g;
+//    u1.group = g;
 //    
 //    UserSQLiteAdapter* useradapter = [UserSQLiteAdapter new];
-//    User* user = [useradapter getByUsername:@"test"];
+//    [useradapter insert:u];
+//    [useradapter insert:u1];
 //    
-//    [user setValue:[NSSet setWithObject:g] forKey:@"group"];
+//    //User* user = [useradapter getByUsername:@"maxy"];
+//    
+//    GroupSQLiteAdapter* groupadapter = [GroupSQLiteAdapter new];
+//    
+//    NSManagedObject* group = [groupadapter getByName:u.group];
+//    
+//    NSManagedObject* dbGroupUsers = [group valueForKey:@"users"];
+//    
+//    for(NSManagedObject* user in dbGroupUsers){
+//        NSLog(@"User: %@", [user valueForKey:@"name"]);
+//    }
+    
+    //NSLog(@"User name: %@",user.name);
+    
     
     CategoryQcm* cat = [CategoryQcm new];
-    cat.name = @"Gestion de projet";
+    cat.name = @"Developpement";
     cat.created_at = date;
     cat.updated_at = date;
     
-    CategoryQcmSQLiteAdapter* catAdapter = [CategoryQcmSQLiteAdapter new];
-    [catAdapter insert:cat];
+    CategoryQcm* cat1 = [CategoryQcm new];
+    cat1.name = @"Communication";
+    cat1.created_at = date;
+    cat1.updated_at = date;
     
-    NSArray* cats = [catAdapter getAll];
+//    CategoryQcm* cat2 = [CategoryQcm new];
+//    cat2.name = @"Expression";
+//    cat2.created_at = date;
+//    cat2.updated_at = date;
     
-    for (NSManagedObject* cat in cats) {
-        NSLog(@"Categorie: %@", [cat valueForKey:@"name"]);
+      CategoryQcmSQLiteAdapter* catAdapter = [CategoryQcmSQLiteAdapter new];
+//    [catAdapter insert:cat];
+//    [catAdapter insert:cat1];
+//    [catAdapter insert:cat2];
+    
+//    NSArray* cats = [catAdapter getAll];
+//    
+//    for (NSManagedObject* cat in cats) {
+//        NSLog(@"Categorie: %@", [cat valueForKey:@"name"]);
+//    }
+    
+    Qcm* qcm = [Qcm new];
+    qcm.name = @"Qcm 1";
+    qcm.start_at = date;
+    qcm.end_at = date;
+    qcm.duration = 60;
+    qcm.created_at = date;
+    qcm.updated_at = date;
+    
+    Qcm* qcm1 = [Qcm new];
+    qcm1.name = @"Qcm 2";
+    qcm1.start_at = date;
+    qcm1.end_at = date;
+    qcm1.duration = 30;
+    qcm1.created_at = date;
+    qcm1.updated_at = date;
+    
+    Qcm* qcm2 = [Qcm new];
+    qcm2.name = @"Qcm 3";
+    qcm2.start_at = date;
+    qcm2.end_at = date;
+    qcm2.duration = 80;
+    qcm2.created_at = date;
+    qcm2.updated_at = date;
+    
+    qcm.categoryQcm = cat;
+    qcm1.categoryQcm = cat1;
+    qcm2.categoryQcm = cat;
+    
+    QcmSQLiteAdapter* qcmAdapter = [QcmSQLiteAdapter new];
+    [qcmAdapter insert:qcm];
+    [qcmAdapter insert:qcm1];
+    [qcmAdapter insert:qcm2];
+    
+    NSManagedObject* category = [catAdapter getByName:qcm.categoryQcm];
+    
+    NSManagedObject* dbCatUsers = [category valueForKey:@"qcms"];
+    
+    for(NSManagedObject* qcm in dbCatUsers){
+        NSLog(@"Qcm: %@", [qcm valueForKey:@"name"]);
     }
-    
-    //NSLog(@"id: %d", id);
     
     return YES;
 }

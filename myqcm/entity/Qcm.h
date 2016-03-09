@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSDate* created_at;
 @property (nonatomic, strong) NSDate* updated_at;
 @property (nonatomic, strong) CategoryQcm* categoryQcm;
+@property (nonatomic, strong) NSArray* qcmUsers;
 
 @end

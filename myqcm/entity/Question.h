@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSDate* created_at;
 @property (nonatomic, strong) NSDate* updated_at;
 @property (nonatomic, strong) Qcm* qcm;
+@property (nonatomic, strong) NSArray* answers;
 
 @end

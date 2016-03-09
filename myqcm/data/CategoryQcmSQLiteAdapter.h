@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CategoryQcm.h"
+#import <CoreData/CoreData.h>
 
 @interface CategoryQcmSQLiteAdapter : NSObject
 
@@ -16,7 +17,8 @@
 + (NSString*) DB_CATEGORYQCM_DATECREATED;
 + (NSString*) DB_CATEGORYQCM_DATEUPDATED;
 
-- (void)insert:(CategoryQcm *)categoryQcm;
+- (NSManagedObject*)insert:(CategoryQcm *)categoryQcm;
 - (NSArray*)getAll;
+- (NSManagedObject *)getByName:(CategoryQcm *)categoryQcm;
 
 @end

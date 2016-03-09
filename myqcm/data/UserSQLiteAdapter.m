@@ -8,6 +8,7 @@
 
 #import "UserSQLiteAdapter.h"
 #import "User.h"
+#import "GroupSQLiteAdapter.h"
 #import "AppDelegate.h"
 
 @implementation UserSQLiteAdapter
@@ -34,6 +35,8 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_USER_EMAIL{return @"email";}
 + (NSString *)DB_USER_DATECREATED{return @"created_at";}
 + (NSString *)DB_USER_DATEUPDATED{return @"updated_at";}
++ (NSString *)DB_USER_GROUP{return @"group";}
+
 
 - (void)insert:(User*)user{
     //GET TABLE
@@ -47,6 +50,15 @@ static NSManagedObjectContext *context;
     [managedObject setValue:user.email forKey:UserSQLiteAdapter.DB_USER_EMAIL];
     [managedObject setValue:user.created_at forKey:UserSQLiteAdapter.DB_USER_DATECREATED];
     [managedObject setValue:user.updated_at forKey:UserSQLiteAdapter.DB_USER_DATEUPDATED];
+    
+    if(user.group != nil){
+        GroupSQLiteAdapter* groupAdapter = [GroupSQLiteAdapter new];
+        NSManagedObject* groupManagedObject = [groupAdapter getByName:user.group];
+        if(groupManagedObject == nil){
+            groupManagedObject = [groupAdapter insert:user.group];
+        }
+        [managedObject setValue:groupManagedObject forKey:UserSQLiteAdapter.DB_USER_GROUP];
+    }
     
     [appDelegate saveContext];
 }

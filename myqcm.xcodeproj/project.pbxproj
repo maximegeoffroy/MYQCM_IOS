@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34690A751C9071980026FCD8 /* QcmSQLiteAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 34690A741C9071980026FCD8 /* QcmSQLiteAdapter.m */; };
 		348E57CF1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 348E57CE1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.m */; };
 		34CEF0E01C8DB21B000E9C13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF0DF1C8DB21B000E9C13 /* main.m */; };
 		34CEF0E31C8DB21B000E9C13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34CEF0E21C8DB21B000E9C13 /* AppDelegate.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34690A731C9071980026FCD8 /* QcmSQLiteAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QcmSQLiteAdapter.h; path = data/QcmSQLiteAdapter.h; sourceTree = "<group>"; };
+		34690A741C9071980026FCD8 /* QcmSQLiteAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QcmSQLiteAdapter.m; path = data/QcmSQLiteAdapter.m; sourceTree = "<group>"; };
 		348E57CD1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryQcmSQLiteAdapter.h; path = data/CategoryQcmSQLiteAdapter.h; sourceTree = "<group>"; };
 		348E57CE1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryQcmSQLiteAdapter.m; path = data/CategoryQcmSQLiteAdapter.m; sourceTree = "<group>"; };
 		34CEF0DB1C8DB21B000E9C13 /* myqcm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myqcm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +159,8 @@
 				34CEF1291C8DD335000E9C13 /* UserSQLiteAdapter.m */,
 				348E57CD1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.h */,
 				348E57CE1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.m */,
+				34690A731C9071980026FCD8 /* QcmSQLiteAdapter.h */,
+				34690A741C9071980026FCD8 /* QcmSQLiteAdapter.m */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				34CEF11B1C8DBE62000E9C13 /* Question.m in Sources */,
 				34CEF0E01C8DB21B000E9C13 /* main.m in Sources */,
 				348E57CF1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.m in Sources */,
+				34690A751C9071980026FCD8 /* QcmSQLiteAdapter.m in Sources */,
 				34CEF12A1C8DD335000E9C13 /* UserSQLiteAdapter.m in Sources */,
 				34CEF1151C8DBBE9000E9C13 /* CategoryQcm.m in Sources */,
 				34CEF11E1C8DBF2A000E9C13 /* Answer.m in Sources */,

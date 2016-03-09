@@ -12,6 +12,13 @@
 
 @interface GroupSQLiteAdapter : NSObject
 
-- (NSManagedObjectID*)insert:(Group*)group;
++ (NSString*) DB_GROUP_TABLENAME;
++ (NSString*) DB_GROUP_NAME;
++ (NSString*) DB_GROUP_CREATEDAT;
++ (NSString*) DB_GROUP_UPDATEDAT;
+
+
+- (NSManagedObject*)insert:(Group*)group;
+- (NSManagedObject *)getByName:(Group *)group;
 
 @end

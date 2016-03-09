@@ -8,6 +8,7 @@
 
 #import "CategoryQcmSQLiteAdapter.h"
 #import "CategoryQcm.h"
+#import "Qcm.h"
 #import "AppDelegate.h"
 
 @implementation CategoryQcmSQLiteAdapter
@@ -31,7 +32,7 @@ static NSManagedObjectContext *context;
 + (NSString*) DB_CATEGORY_QCM_DATECREATED{return @"created_at";}
 + (NSString*) DB_CATEGORY_QCM_DATEUPDATED{return @"updated_at";}
 
-- (void)insert:(CategoryQcm *)categoryQcm{
+- (NSManagedObject*)insert:(CategoryQcm *)categoryQcm{
     //GET TABLE
     NSManagedObject* managedObject = [NSEntityDescription insertNewObjectForEntityForName:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_TABLENAME inManagedObjectContext:context];
     
@@ -41,6 +42,8 @@ static NSManagedObjectContext *context;
     [managedObject setValue:categoryQcm.updated_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORY_QCM_DATEUPDATED];
     
     [appDelegate saveContext];
+    
+    return managedObject;
 }
 
 - (NSArray*)getAll{
@@ -50,12 +53,34 @@ static NSManagedObjectContext *context;
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
     
     //get table for request
-    fetchRequest.entity = [NSEntityDescription entityForName:@"CategoryQcm" inManagedObjectContext:context];
+    fetchRequest.entity = [NSEntityDescription entityForName:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_TABLENAME inManagedObjectContext:context];
     
     //get all city db object
     categoriesQcm = [context executeFetchRequest:fetchRequest error:nil];
     
     return categoriesQcm;
+}
+
+- (NSManagedObject *)getByName:(CategoryQcm *)categoryQcm{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", categoryQcm.name];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    //execute the query
+    return managedObject;
 }
 
 @end
