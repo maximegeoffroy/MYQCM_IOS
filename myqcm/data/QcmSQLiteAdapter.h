@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "Qcm.h"
 
 @interface QcmSQLiteAdapter : NSObject
@@ -16,11 +17,15 @@
 + (NSString *)DB_QCM_STARTAT;
 + (NSString *)DB_QCM_ENDAT;
 + (NSString *)DB_QCM_DURATION;
++ (NSString *)DB_QCM_IDSERVER;
 + (NSString *)DB_QCM_CREATEDAT;
 + (NSString *)DB_QCM_UPDATEDAT;
 + (NSString *)DB_QCM_CATEGORYQCM;
 
 - (void)insert:(Qcm*)qcm;
 - (NSArray*)getAll;
+- (Qcm *)getByIdServer:(int)idServer;
+- (NSManagedObject *)getByIdServerManagedObject:(int)idServer;
+- (Qcm *)managedObjectToQcm:(NSManagedObject *)managedObject;
 
 @end

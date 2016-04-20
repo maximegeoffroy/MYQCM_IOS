@@ -29,8 +29,9 @@ static NSManagedObjectContext *context;
 
 + (NSString *)DB_CATEGORYQCM_TABLENAME{return @"CategoryQcm";}
 + (NSString *)DB_CATEGORYQCM_NAME{return @"name";}
-+ (NSString*) DB_CATEGORY_QCM_DATECREATED{return @"created_at";}
-+ (NSString*) DB_CATEGORY_QCM_DATEUPDATED{return @"updated_at";}
++ (NSString *)DB_CATEGORYQCM_IDSERVER{return @"idServer";}
++ (NSString *)DB_CATEGORYQCM_DATECREATED{return @"created_at";}
++ (NSString *)DB_CATEGORYQCM_DATEUPDATED{return @"updated_at";}
 
 - (NSManagedObject*)insert:(CategoryQcm *)categoryQcm{
     //GET TABLE
@@ -38,8 +39,9 @@ static NSManagedObjectContext *context;
     
     //INSERT IN TABLE
     [managedObject setValue:categoryQcm.name forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_NAME];
-    [managedObject setValue:categoryQcm.created_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORY_QCM_DATECREATED];
-    [managedObject setValue:categoryQcm.updated_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORY_QCM_DATEUPDATED];
+    [managedObject setValue:[NSNumber numberWithInt:(categoryQcm.idServer)] forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_IDSERVER];
+    [managedObject setValue:categoryQcm.created_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATECREATED];
+    [managedObject setValue:categoryQcm.updated_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATEUPDATED];
     
     [appDelegate saveContext];
     
@@ -81,6 +83,43 @@ static NSManagedObjectContext *context;
     
     //execute the query
     return managedObject;
+}
+
+- (CategoryQcm *)getByIdServer:(int)idServer{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    CategoryQcm* categoryQcm = [self managedObjectToCategoryQcm:managedObject];
+    
+    return categoryQcm;
+}
+
+- (CategoryQcm *)managedObjectToCategoryQcm:(NSManagedObject *)managedObject{
+    CategoryQcm* categoryQcm = nil;
+    
+    if(managedObject != nil){
+        categoryQcm = [CategoryQcm new];
+        categoryQcm.name = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_NAME];
+        //categoryQcm.idServer = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_IDSERVER];
+        categoryQcm.created_at = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATECREATED];
+        categoryQcm.updated_at = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATEUPDATED];
+    }
+
+    return categoryQcm;
 }
 
 @end

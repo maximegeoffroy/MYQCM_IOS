@@ -9,6 +9,6 @@
 #import "Qcm.h"
 
 @implementation Qcm
-@synthesize name,start_at,end_at,duration,created_at,updated_at,categoryQcm,qcmUsers;
+@synthesize name,start_at,end_at,duration,idServer,created_at,updated_at,categoryQcm,qcmUsers;
 
 @end

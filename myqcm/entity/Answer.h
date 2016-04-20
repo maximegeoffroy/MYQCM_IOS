@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString* content;
 @property (nonatomic) int point;
 @property (nonatomic) Boolean is_valid;
+@property (nonatomic) int idServer;
 @property (nonatomic, strong) NSDate* created_at;
 @property (nonatomic, strong) NSDate* updated_at;
 @property (nonatomic, strong) Question* question;

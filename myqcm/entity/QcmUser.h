@@ -16,5 +16,6 @@
 @property (nonatomic,strong) Qcm* qcm;
 @property (nonatomic) float note;
 @property (nonatomic) Boolean is_done;
+@property (nonatomic) int idServer;
 
 @end

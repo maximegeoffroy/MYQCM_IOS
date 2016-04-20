@@ -9,6 +9,6 @@
 #import "QcmUser.h"
 
 @implementation QcmUser
-@synthesize user,qcm,note,is_done;
+@synthesize user,qcm,note,is_done,idServer;
 
 @end

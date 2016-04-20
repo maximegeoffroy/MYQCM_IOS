@@ -9,7 +9,7 @@
 #import "CategoryQcm.h"
 
 @implementation CategoryQcm
-@synthesize name,created_at,updated_at,qcms;
+@synthesize name,idServer,created_at,updated_at,qcms;
 
 
 @end

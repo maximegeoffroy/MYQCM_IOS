@@ -9,10 +9,15 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "Qcm.h"
+#import "Answer.h"
+#import "QcmUser.h"
 #import "UserSQLiteAdapter.h"
 #import "GroupSQLiteAdapter.h"
 #import "CategoryQcmSQLiteAdapter.h"
 #import "QcmSQLiteAdapter.h"
+#import "AnswerSQLiteAdapter.h"
+#import "QuestionSQLiteAdapter.h"
+#import "QcmUserSQLiteAdapter.h"
 
 @interface AppDelegate ()
 
@@ -33,6 +38,7 @@
 //    u.name = @"Lepage";
 //    u.firstname = @"Alexis";
 //    u.email = @"lepage@hotmail.fr";
+//    u.idServer = 1;
 //    u.created_at = date;
 //    u.updated_at = date;
 //    
@@ -42,26 +48,34 @@
 //    u1.name = @"Geoffroy";
 //    u1.firstname = @"Maxime";
 //    u1.email = @"geoffroy@hotmail.fr";
+//    u1.idServer = 2;
 //    u1.created_at = date;
 //    u1.updated_at = date;
-//    
+//
 //    Group* g = [Group new];
 //    
 //    g.name = @"CDSM";
+//    g.idServer = 1;
 //    g.created_at = date;
 //    g.updated_at = date;
-//    
+
 //    u.group = g;
 //    u1.group = g;
-//    
+
 //    UserSQLiteAdapter* useradapter = [UserSQLiteAdapter new];
 //    [useradapter insert:u];
 //    [useradapter insert:u1];
 //    
+
+//
 //    //User* user = [useradapter getByUsername:@"maxy"];
 //    
 //    GroupSQLiteAdapter* groupadapter = [GroupSQLiteAdapter new];
+//    [groupadapter insert:g];
 //    
+//    Group* group = [groupadapter getByIdServer:1];
+    
+//
 //    NSManagedObject* group = [groupadapter getByName:u.group];
 //    
 //    NSManagedObject* dbGroupUsers = [group valueForKey:@"users"];
@@ -73,25 +87,39 @@
     //NSLog(@"User name: %@",user.name);
     
     
-    CategoryQcm* cat = [CategoryQcm new];
-    cat.name = @"Developpement";
-    cat.created_at = date;
-    cat.updated_at = date;
-    
-    CategoryQcm* cat1 = [CategoryQcm new];
-    cat1.name = @"Communication";
-    cat1.created_at = date;
-    cat1.updated_at = date;
-    
+//    CategoryQcm* cat = [CategoryQcm new];
+//    cat.name = @"Developpement";
+//    cat.idServer = 1;
+//    cat.created_at = date;
+//    cat.updated_at = date;
+//    
+//    CategoryQcm* cat1 = [CategoryQcm new];
+//    cat1.name = @"Communication";
+//    cat1.idServer = 2;
+//    cat1.created_at = date;
+//    cat1.updated_at = date;
+//    
 //    CategoryQcm* cat2 = [CategoryQcm new];
 //    cat2.name = @"Expression";
+//    cat2.idServer = 3;
 //    cat2.created_at = date;
 //    cat2.updated_at = date;
-    
-      CategoryQcmSQLiteAdapter* catAdapter = [CategoryQcmSQLiteAdapter new];
+//    
+    //CategoryQcmSQLiteAdapter* catAdapter = [CategoryQcmSQLiteAdapter new];
 //    [catAdapter insert:cat];
 //    [catAdapter insert:cat1];
 //    [catAdapter insert:cat2];
+    
+    //CategoryQcm* catQcm = [catAdapter getByIdServer:1];
+
+    
+//    NSArray* tab = [catAdapter getAll];
+//    
+//    for (NSManagedObject* cat in tab) {
+//        NSLog(@"Categorie: %@", [cat valueForKey:@"idServer"]);
+//    }
+    
+    //NSLog(@"Name : %@", catQcm.name);
     
 //    NSArray* cats = [catAdapter getAll];
 //    
@@ -99,46 +127,122 @@
 //        NSLog(@"Categorie: %@", [cat valueForKey:@"name"]);
 //    }
     
-    Qcm* qcm = [Qcm new];
-    qcm.name = @"Qcm 1";
-    qcm.start_at = date;
-    qcm.end_at = date;
-    qcm.duration = 60;
-    qcm.created_at = date;
-    qcm.updated_at = date;
+//    Qcm* qcm = [Qcm new];
+//    qcm.name = @"Qcm 1";
+//    qcm.start_at = date;
+//    qcm.end_at = date;
+//    qcm.duration = 60;
+//    qcm.idServer = 1;
+//    qcm.created_at = date;
+//    qcm.updated_at = date;
+//    
+//    Qcm* qcm1 = [Qcm new];
+//    qcm1.name = @"Qcm 2";
+//    qcm1.start_at = date;
+//    qcm1.end_at = date;
+//    qcm1.duration = 30;
+//    qcm1.idServer = 2;
+//    qcm1.created_at = date;
+//    qcm1.updated_at = date;
+//    
+//    Qcm* qcm2 = [Qcm new];
+//    qcm2.name = @"Qcm 3";
+//    qcm2.start_at = date;
+//    qcm2.end_at = date;
+//    qcm2.duration = 80;
+//    qcm2.idServer = 3;
+//    qcm2.created_at = date;
+//    qcm2.updated_at = date;
+//    
+//    QcmSQLiteAdapter* qcmAdapter = [QcmSQLiteAdapter new];
+//    [qcmAdapter insert:qcm];
+//    [qcmAdapter insert:qcm1];
+//    [qcmAdapter insert:qcm2];
+//    
+//    QcmUser* qcmuser = [QcmUser new];
+//    qcmuser.user = u;
+//    qcmuser.qcm = qcm2;
+//    qcmuser.note = 0;
+//    qcmuser.is_done = false;
+//    qcmuser.idServer = 1;
+//    
+    //QcmUserSQLiteAdapter* qcmUserAdapter = [QcmUserSQLiteAdapter new];
+//    [qcmUserAdapter insert:qcmuser];
     
-    Qcm* qcm1 = [Qcm new];
-    qcm1.name = @"Qcm 2";
-    qcm1.start_at = date;
-    qcm1.end_at = date;
-    qcm1.duration = 30;
-    qcm1.created_at = date;
-    qcm1.updated_at = date;
+//    NSArray* tab = [qcmUserAdapter getAll];
+//    
+//    for(NSManagedObject* qcmUser in tab){
+//        NSLog(@"QcmUser: %@", [qcmUser valueForKey:@"is_done"]);
+//    }
     
-    Qcm* qcm2 = [Qcm new];
-    qcm2.name = @"Qcm 3";
-    qcm2.start_at = date;
-    qcm2.end_at = date;
-    qcm2.duration = 80;
-    qcm2.created_at = date;
-    qcm2.updated_at = date;
     
-    qcm.categoryQcm = cat;
-    qcm1.categoryQcm = cat1;
-    qcm2.categoryQcm = cat;
+    //Qcm* q = [qcmAdapter getByIdServer:1];
     
-    QcmSQLiteAdapter* qcmAdapter = [QcmSQLiteAdapter new];
-    [qcmAdapter insert:qcm];
-    [qcmAdapter insert:qcm1];
-    [qcmAdapter insert:qcm2];
+//    Answer* a = [Answer new];
+//    a.content = @"Quelle est ton nom ?";
+//    a.point = 0;
+//    a.idServer = 1;
+//    a.is_valid = false;
+//    a.created_at = date;
+//    a.updated_at = date;
+//    
+//    Answer* a1 = [Answer new];
+//    a1.content = @"Quelle est ton prénom ?";
+//    a1.point = 2;
+//    a1.idServer = 2;
+//    a1.is_valid = true;
+//    a1.created_at = date;
+//    a1.updated_at = date;
+//    
+//    Answer* a2 = [Answer new];
+//    a2.content = @"Quelle est ton age ?";
+//    a2.point = 0;
+//    a2.idServer = 3;
+//    a2.is_valid = false;
+//    a2.created_at = date;
+//    a2.updated_at = date;
     
-    NSManagedObject* category = [catAdapter getByName:qcm.categoryQcm];
+    //AnswerSQLiteAdapter* answerAdapter = [AnswerSQLiteAdapter new];
+//    [answerAdapter insert:a];
+//    [answerAdapter insert:a1];
+//    [answerAdapter insert:a2];
     
-    NSManagedObject* dbCatUsers = [category valueForKey:@"qcms"];
+    //Answer* answer = [answerAdapter getByIdServer:1];
     
-    for(NSManagedObject* qcm in dbCatUsers){
-        NSLog(@"Qcm: %@", [qcm valueForKey:@"name"]);
-    }
+//    Question* q = [Question new];
+//    q.content = @"Quelle est ton sport préféré ?";
+//    q.idServer = 1;
+//    q.created_at = date;
+//    q.updated_at = date;
+//    
+//    Question* q1 = [Question new];
+//    q1.content = @"Quelle est ta matière préférée ?";
+//    q1.idServer = 2;
+//    q1.created_at = date;
+//    q1.updated_at = date;
+//    
+//    Question* q2 = [Question new];
+//    q2.content = @"Quelle est ta ville préférée ?";
+//    q2.idServer = 3;
+//    q2.created_at = date;
+//    q2.updated_at = date;
+    
+    //QuestionSQLiteAdapter* questionAdapter = [QuestionSQLiteAdapter new];
+//    [questionAdapter insert:q];
+//    [questionAdapter insert:q1];
+//    [questionAdapter insert:q2];
+    
+//    Question* question = [questionAdapter getByIdServer:1];
+//    
+//    NSLog(@"Content: %@", question.content);
+//
+//    NSManagedObject* category = [catAdapter getByName:qcm.categoryQcm];
+//    
+//    NSManagedObject* dbCatUsers = [category valueForKey:@"qcms"];
+//    
+//    for(NSManagedObject* qcm in dbCatUsers){
+//        NSLog(@"Qcm: %@", [qcm valueForKey:@"name"]);
+//    }
     
     return YES;
 }

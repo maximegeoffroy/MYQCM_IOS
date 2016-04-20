@@ -27,6 +27,7 @@ static NSManagedObjectContext *context;
 
 + (NSString *)DB_GROUP_TABLENAME{return @"Group";}
 + (NSString *)DB_GROUP_NAME{return @"name";}
++ (NSString *)DB_GROUP_IDSERVER{return @"idServer";}
 + (NSString *)DB_GROUP_CREATEDAT{return @"created_at";}
 + (NSString *)DB_GROUP_UPDATEDAT{return @"updated_at";}
 
@@ -37,6 +38,7 @@ static NSManagedObjectContext *context;
     
     //INSERT IN TABLE
     [managedObject setValue:group.name forKey:GroupSQLiteAdapter.DB_GROUP_NAME];
+    [managedObject setValue:[NSNumber numberWithInt:(group.idServer)] forKey:GroupSQLiteAdapter.DB_GROUP_IDSERVER];
     [managedObject setValue:group.created_at forKey:GroupSQLiteAdapter.DB_GROUP_CREATEDAT];
     [managedObject setValue:group.updated_at forKey:GroupSQLiteAdapter.DB_GROUP_UPDATEDAT];
     
@@ -65,6 +67,29 @@ static NSManagedObjectContext *context;
     //execute the query
     
     return managedObject;
+}
+
+- (Group *)getByIdServer:(int)idServer{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:GroupSQLiteAdapter.DB_GROUP_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    Group* group = [self managedObjectToGroup:managedObject];
+    
+    return group;
 }
 
 - (Group*)managedObjectToGroup:(NSManagedObject *)managedObject{

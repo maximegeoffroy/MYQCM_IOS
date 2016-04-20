@@ -12,6 +12,7 @@
 @interface Question : NSObject
 
 @property (nonatomic, strong) NSString* content;
+@property (nonatomic) int idServer;
 @property (nonatomic, strong) NSDate* created_at;
 @property (nonatomic, strong) NSDate* updated_at;
 @property (nonatomic, strong) Qcm* qcm;

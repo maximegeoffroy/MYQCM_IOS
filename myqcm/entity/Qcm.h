@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDate* start_at;
 @property (nonatomic, strong) NSDate* end_at;
 @property (nonatomic) int duration;
+@property (nonatomic) int idServer;
 @property (nonatomic, strong) NSDate* created_at;
 @property (nonatomic, strong) NSDate* updated_at;
 @property (nonatomic, strong) CategoryQcm* categoryQcm;

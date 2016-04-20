@@ -14,11 +14,13 @@
 
 + (NSString*) DB_GROUP_TABLENAME;
 + (NSString*) DB_GROUP_NAME;
++ (NSString *)DB_GROUP_IDSERVER;
 + (NSString*) DB_GROUP_CREATEDAT;
 + (NSString*) DB_GROUP_UPDATEDAT;
 
 
 - (NSManagedObject*)insert:(Group*)group;
 - (NSManagedObject *)getByName:(Group *)group;
+- (Group *)getByIdServer:(int)idServer;
 
 @end

@@ -18,12 +18,15 @@
 + (NSString*) DB_USER_NAME;
 + (NSString*) DB_USER_FIRSTNAME;
 + (NSString*) DB_USER_EMAIL;
++ (NSString*) DB_USER_IDSERVER;
 + (NSString*) DB_USER_DATECREATED;
 + (NSString*) DB_USER_DATEUPDATED;
 + (NSString*) DB_USER_GROUP;
 
 - (void)insert:(User*)user;
 - (User *)getByUsername:(NSString *)username;
+- (User *)getByIdServer:(int)idServer;
+- (NSManagedObject *)getByIdServerManagedObject:(int)idServer;
 - (User *)managedObjectToUser:(NSManagedObject *)managedObject;
 
 @end

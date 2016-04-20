@@ -31,6 +31,7 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_QCM_STARTAT{return @"start_at";}
 + (NSString *)DB_QCM_ENDAT{return @"end_at";}
 + (NSString *)DB_QCM_DURATION{return @"duration";}
++ (NSString *)DB_QCM_IDSERVER{return @"idServer";}
 + (NSString *)DB_QCM_CREATEDAT{return @"created_at";}
 + (NSString *)DB_QCM_UPDATEDAT{return @"updated_at";}
 + (NSString *)DB_QCM_CATEGORYQCM{return @"categoryqcm";}
@@ -45,6 +46,7 @@ static NSManagedObjectContext *context;
     [managedObject setValue:qcm.start_at forKey:QcmSQLiteAdapter.DB_QCM_STARTAT];
     [managedObject setValue:qcm.end_at forKey:QcmSQLiteAdapter.DB_QCM_ENDAT];
     [managedObject setValue:[NSNumber numberWithInt:(qcm.duration)] forKey:QcmSQLiteAdapter.DB_QCM_DURATION];
+    [managedObject setValue:[NSNumber numberWithInt:(qcm.idServer)] forKey:QcmSQLiteAdapter.DB_QCM_IDSERVER];
     [managedObject setValue:qcm.created_at forKey:QcmSQLiteAdapter.DB_QCM_CREATEDAT];
     [managedObject setValue:qcm.updated_at forKey:QcmSQLiteAdapter.DB_QCM_UPDATEDAT];
     
@@ -73,6 +75,67 @@ static NSManagedObjectContext *context;
     qcms = [context executeFetchRequest:fetchRequest error:nil];
     
     return qcms;
+}
+
+- (Qcm *)getByIdServer:(int)idServer{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:QcmSQLiteAdapter.DB_QCM_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray* results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    Qcm* qcm = [self managedObjectToQcm:managedObject];
+    
+    return qcm;
+}
+
+- (NSManagedObject *)getByIdServerManagedObject:(int)idServer{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:QcmSQLiteAdapter.DB_QCM_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray* results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    return managedObject;
+}
+
+- (Qcm *)managedObjectToQcm:(NSManagedObject *)managedObject{
+    Qcm* qcm = nil;
+    
+    if(managedObject != nil){
+        qcm = [Qcm new];
+        qcm.name = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_NAME];
+        qcm.start_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_STARTAT];
+        qcm.end_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_ENDAT];
+        //qcm.duration = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_DURATION];
+        //qcm.idServer = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_IDSERVER];
+        qcm.created_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_CREATEDAT];
+        qcm.updated_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_UPDATEDAT];
+    }
+    
+    return qcm;
 }
 
 @end

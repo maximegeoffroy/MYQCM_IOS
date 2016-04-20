@@ -33,6 +33,7 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_USER_NAME{return @"name";}
 + (NSString *)DB_USER_FIRSTNAME{return @"firstname";}
 + (NSString *)DB_USER_EMAIL{return @"email";}
++ (NSString *)DB_USER_IDSERVER{return @"idServer";}
 + (NSString *)DB_USER_DATECREATED{return @"created_at";}
 + (NSString *)DB_USER_DATEUPDATED{return @"updated_at";}
 + (NSString *)DB_USER_GROUP{return @"group";}
@@ -48,6 +49,7 @@ static NSManagedObjectContext *context;
     [managedObject setValue:user.name forKey:UserSQLiteAdapter.DB_USER_NAME];
     [managedObject setValue:user.firstname forKey:UserSQLiteAdapter.DB_USER_FIRSTNAME];
     [managedObject setValue:user.email forKey:UserSQLiteAdapter.DB_USER_EMAIL];
+    [managedObject setValue:[NSNumber numberWithInt:(user.idServer)] forKey:UserSQLiteAdapter.DB_USER_IDSERVER];
     [managedObject setValue:user.created_at forKey:UserSQLiteAdapter.DB_USER_DATECREATED];
     [managedObject setValue:user.updated_at forKey:UserSQLiteAdapter.DB_USER_DATEUPDATED];
     
@@ -81,6 +83,50 @@ static NSManagedObjectContext *context;
     return user;
 }
 
+- (User *)getByIdServer:(int)idServer{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:UserSQLiteAdapter.DB_USER_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    User* user = [self managedObjectToUser:managedObject];
+    
+    return user;
+}
+
+- (NSManagedObject *)getByIdServerManagedObject:(int)idServer{
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:UserSQLiteAdapter.DB_USER_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    NSArray *results = [context executeFetchRequest:request error:nil];
+    
+    NSManagedObject* managedObject = nil;
+    if (results.count > 0) {
+        managedObject = [results objectAtIndex:0];
+    }
+    
+    return managedObject;
+}
+
 - (User *)managedObjectToUser:(NSManagedObject *)managedObject{
     User* user = nil;
     
@@ -91,6 +137,7 @@ static NSManagedObjectContext *context;
         user.name = [managedObject valueForKey:UserSQLiteAdapter.DB_USER_NAME];
         user.firstname = [managedObject valueForKey:UserSQLiteAdapter.DB_USER_FIRSTNAME];
         user.email = [managedObject valueForKey:UserSQLiteAdapter.DB_USER_EMAIL];
+        //user.idServer = [managedObject valueForKey:UserSQLiteAdapter.DB_USER_IDSERVER];
         user.created_at = [managedObject valueForKey:UserSQLiteAdapter.DB_USER_DATECREATED];
         user.updated_at = [managedObject valueForKey:UserSQLiteAdapter.DB_USER_DATEUPDATED];
     }
