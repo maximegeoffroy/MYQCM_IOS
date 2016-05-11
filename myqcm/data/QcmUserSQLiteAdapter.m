@@ -16,6 +16,7 @@
 static AppDelegate *appDelegate;
 static NSManagedObjectContext *context;
 
+/* Constructor of QcmUserSQLiteAdapter */
 -(id) init {
     
     self = [super init];
@@ -28,6 +29,7 @@ static NSManagedObjectContext *context;
     
 }
 
+/* Constants */
 + (NSString*) DB_QCMUSER_TABLENAME{return @"QcmUser";}
 + (NSString*) DB_QCMUSER_USER{return @"user";}
 + (NSString*) DB_QCMUSER_QCM{return @"qcm";}
@@ -35,6 +37,7 @@ static NSManagedObjectContext *context;
 + (NSString*) DB_QCMUSER_ISDONE{return @"is_done";}
 + (NSString *)DB_QCMUSER_IDSERVER{return @"idServer";}
 
+/* Insert QcmUser in database */
 - (NSManagedObject*)insert:(QcmUser*)qcmuser{
     //GET TABLE
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:QcmUserSQLiteAdapter.DB_QCMUSER_TABLENAME inManagedObjectContext:context];
@@ -64,6 +67,7 @@ static NSManagedObjectContext *context;
     return managedObject;
 }
 
+/* Get all QcmUser in database */
 - (NSArray*)getAll{
     NSArray* qcmuser = [NSArray new];
     
@@ -79,6 +83,7 @@ static NSManagedObjectContext *context;
     return qcmuser;
 }
 
+/* Get QcmUser by idServer in database */
 - (QcmUser *)getByIdServer:(int)idServer{
     
     //create a filter
@@ -97,20 +102,8 @@ static NSManagedObjectContext *context;
         managedObject = [results objectAtIndex:0];
     }
     
-    QcmUser* qcmuser = [self managedObjectToQuestion:managedObject];
-    
-    return qcmuser;
-}
-
-- (QcmUser *)managedObjectToQuestion:(NSManagedObject *)managedObject{
-    QcmUser* qcmuser = nil;
-    
-    if(managedObject != nil){
-        qcmuser = [QcmUser new];
-        //qcmuser.note = [managedObject valueForKey:QcmUserSQLiteAdapter.DB_QCMUSER_NOTE];
-        //qcmuser.is_done = [managedObject valueForKey:QcmUserSQLiteAdapter.DB_QCMUSER_ISDONE];
-        //qcmuser.idServer = [managedObject valueForKey:QcmUserSQLiteAdapter.DB_QCMUSER_IDSERVER];
-    }
+    QcmUser* qcmuser;
+    //= [self managedObjectToQcmUser:managedObject];
     
     return qcmuser;
 }

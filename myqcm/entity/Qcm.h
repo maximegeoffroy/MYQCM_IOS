@@ -20,5 +20,6 @@
 @property (nonatomic, strong) NSDate* updated_at;
 @property (nonatomic, strong) CategoryQcm* categoryQcm;
 @property (nonatomic, strong) NSArray* qcmUsers;
+@property (nonatomic, strong) NSArray* questions;
 
 @end

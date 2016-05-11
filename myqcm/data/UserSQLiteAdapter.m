@@ -15,6 +15,7 @@
 static AppDelegate *appDelegate;
 static NSManagedObjectContext *context;
 
+/* Constructor of UserSQLiteAdapter */
 -(id) init {
     
     self = [super init];
@@ -27,6 +28,7 @@ static NSManagedObjectContext *context;
     
 }
 
+/* Constants */
 + (NSString *)DB_USER_TABLENAME{return @"User";}
 + (NSString *)DB_USER_USERNAME{return @"username";}
 + (NSString *)DB_USER_PASSWORD{return @"password";}
@@ -38,7 +40,7 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_USER_DATEUPDATED{return @"updated_at";}
 + (NSString *)DB_USER_GROUP{return @"group";}
 
-
+/* Insert user in database */
 - (void)insert:(User*)user{
     //GET TABLE
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:UserSQLiteAdapter.DB_USER_TABLENAME inManagedObjectContext:context];
@@ -64,6 +66,8 @@ static NSManagedObjectContext *context;
     
     [appDelegate saveContext];
 }
+
+/* Get user by username in database */
 - (User *)getByUsername:(NSString *)username{
     
     //create a filter
@@ -83,6 +87,7 @@ static NSManagedObjectContext *context;
     return user;
 }
 
+/* Get user by idServer in database */
 - (User *)getByIdServer:(int)idServer{
     
     //create a filter
@@ -106,6 +111,7 @@ static NSManagedObjectContext *context;
     return user;
 }
 
+/* Get user (managedObject) by username in database */
 - (NSManagedObject *)getByIdServerManagedObject:(int)idServer{
     
     //create a filter
@@ -127,6 +133,7 @@ static NSManagedObjectContext *context;
     return managedObject;
 }
 
+/* Convert managedObject to User */
 - (User *)managedObjectToUser:(NSManagedObject *)managedObject{
     User* user = nil;
     

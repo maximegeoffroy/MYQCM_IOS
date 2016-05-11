@@ -14,6 +14,7 @@
 static AppDelegate *appDelegate;
 static NSManagedObjectContext *context;
 
+/* Constructor of QcmSQLiteAdapter */
 -(id) init {
     
     self = [super init];
@@ -26,6 +27,7 @@ static NSManagedObjectContext *context;
     
 }
 
+/* Constants */
 + (NSString *)DB_QCM_TABLENAME{return @"Qcm";}
 + (NSString *)DB_QCM_NAME{return @"name";}
 + (NSString *)DB_QCM_STARTAT{return @"start_at";}
@@ -36,6 +38,7 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_QCM_UPDATEDAT{return @"updated_at";}
 + (NSString *)DB_QCM_CATEGORYQCM{return @"categoryqcm";}
 
+/* Insert qcm in database */
 - (void)insert:(Qcm*)qcm{
     //GET TABLE
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:QcmSQLiteAdapter.DB_QCM_TABLENAME inManagedObjectContext:context];
@@ -62,6 +65,7 @@ static NSManagedObjectContext *context;
     [appDelegate saveContext];
 }
 
+/* Get all qcm in database */
 - (NSArray*)getAll{
     NSArray* qcms = [NSArray new];
     
@@ -77,6 +81,7 @@ static NSManagedObjectContext *context;
     return qcms;
 }
 
+/* Get qcm by idServer in database */
 - (Qcm *)getByIdServer:(int)idServer{
     
     //create a filter
@@ -100,6 +105,7 @@ static NSManagedObjectContext *context;
     return qcm;
 }
 
+/* Get qcm (managedObject) by idServer in database */
 - (NSManagedObject *)getByIdServerManagedObject:(int)idServer{
     
     //create a filter
@@ -121,6 +127,7 @@ static NSManagedObjectContext *context;
     return managedObject;
 }
 
+/* Convert managedObject to Qcm */
 - (Qcm *)managedObjectToQcm:(NSManagedObject *)managedObject{
     Qcm* qcm = nil;
     

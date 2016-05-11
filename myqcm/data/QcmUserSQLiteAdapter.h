@@ -20,6 +20,5 @@
 - (NSManagedObject*)insert:(QcmUser*)qcmuser;
 - (NSArray*)getAll;
 - (QcmUser*)getByIdServer:(int)idServer;
-- (QcmUser*)managedObjectToQcmUser:(NSManagedObject *)managedObject;
 
 @end

@@ -20,6 +20,7 @@
 + (NSString *)JSON_USER_UPDATEDAT{return @"updated_at";}
 + (NSString *)JSON_USER_USERQCMS{return @"user_qcms";}
 
+/* Get user in webservice database */
 - (void)getUser:(NSString*)name andCallback:(void (^)(User *))callback{
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
@@ -41,6 +42,7 @@
     }];
 }
 
+/* Convert json to user */
 - (User*)extract:(NSDictionary *)json{
     User* user = nil;
     

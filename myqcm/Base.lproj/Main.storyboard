@@ -41,7 +41,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connexion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA5-uR-fYS">
                                 <rect key="frame" x="260" y="72" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -82,7 +82,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z91-LQ-W1b">
                                             <rect key="frame" x="279" y="8" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -93,6 +93,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="labelQcmName" destination="Z91-LQ-W1b" id="NlP-cO-PcJ"/>
+                                    <segue destination="gdj-Ea-smF" kind="show" id="r7Y-XQ-tGg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -106,10 +107,64 @@
             </objects>
             <point key="canvasLocation" x="1775" y="410"/>
         </scene>
+        <!--Question View Controller-->
+        <scene sceneID="xot-ne-9vI">
+            <objects>
+                <viewController id="gdj-Ea-smF" customClass="QuestionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d75-Ju-zWg"/>
+                        <viewControllerLayoutGuide type="bottom" id="uyt-OM-N2m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iWm-b1-yGL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAk-pL-juI">
+                                <rect key="frame" x="279" y="131" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZpT-UV-EdZ">
+                                <rect key="frame" x="277" y="379" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-nn-QYQ">
+                                <rect key="frame" x="288" y="199" width="25" height="25"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" image="YES" selected="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="1Ah-jF-L1a"/>
+                                    <constraint firstAttribute="width" constant="25" id="ckb-BT-xtl"/>
+                                </constraints>
+                                <state key="normal" image="checked.png"/>
+                                <connections>
+                                    <action selector="checkButton:" destination="gdj-Ea-smF" eventType="touchUpInside" id="Ak6-Uo-Rde"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZpT-UV-EdZ" firstAttribute="centerX" secondItem="iWm-b1-yGL" secondAttribute="centerX" id="F0E-bS-Exd"/>
+                            <constraint firstItem="gbT-nn-QYQ" firstAttribute="centerX" secondItem="uAk-pL-juI" secondAttribute="centerX" id="KkA-At-X17"/>
+                            <constraint firstItem="uAk-pL-juI" firstAttribute="top" secondItem="d75-Ju-zWg" secondAttribute="bottom" constant="67" id="R7J-zD-RN2"/>
+                            <constraint firstItem="uAk-pL-juI" firstAttribute="centerX" secondItem="ZpT-UV-EdZ" secondAttribute="centerX" id="XN5-SH-v0C"/>
+                            <constraint firstItem="uyt-OM-N2m" firstAttribute="top" secondItem="ZpT-UV-EdZ" secondAttribute="bottom" constant="191" id="i7w-rP-APb"/>
+                            <constraint firstItem="gbT-nn-QYQ" firstAttribute="top" secondItem="uAk-pL-juI" secondAttribute="bottom" constant="47" id="jNT-QE-VUv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="checkBoxButton" destination="gbT-nn-QYQ" id="fAw-zI-dAr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o3f-Np-tqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2523" y="410"/>
+        </scene>
         <!--Category Qcm Table View Controller-->
         <scene sceneID="2nT-rD-QeB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3c-va-pFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="WAL-h1-bVd" customClass="CategoryQcmTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Go-Kg-6Wd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -126,7 +181,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZZ-yF-BgC">
                                             <rect key="frame" x="279" y="14" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -148,6 +203,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="oZV-M9-h00"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3c-va-pFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="955" y="410"/>
         </scene>
@@ -168,4 +224,7 @@
             <point key="canvasLocation" x="145" y="410"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checked.png" width="512" height="512"/>
+    </resources>
 </document>

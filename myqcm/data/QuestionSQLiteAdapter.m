@@ -13,6 +13,7 @@
 static AppDelegate *appDelegate;
 static NSManagedObjectContext *context;
 
+/* Constructor of QuestionSQLiteAdapter */
 -(id) init {
     
     self = [super init];
@@ -25,12 +26,14 @@ static NSManagedObjectContext *context;
     
 }
 
+/* Constants */
 + (NSString*) DB_QUESTION_TABLENAME{return @"Question";}
 + (NSString*) DB_QUESTION_CONTENT{return @"content";}
 + (NSString *)DB_QUESTION_IDSERVER{return @"idServer";}
 + (NSString*) DB_QUESTION_CREATEDAT{return @"created_at";}
 + (NSString*) DB_QUESTION_UPDATEDAT{return @"updated_at";}
 
+/* Insert question in database */
 - (NSManagedObject*)insert:(Question*)question{
     //GET TABLE
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:QuestionSQLiteAdapter.DB_QUESTION_TABLENAME inManagedObjectContext:context];
@@ -47,6 +50,7 @@ static NSManagedObjectContext *context;
     return managedObject;
 }
 
+/* Get all questions in database */
 - (NSArray*)getAll{
     NSArray* questions = [NSArray new];
     
@@ -62,6 +66,7 @@ static NSManagedObjectContext *context;
     return questions;
 }
 
+/* Get question by idServer in database */
 - (Question *)getByIdServer:(int)idServer{
     
     //create a filter
@@ -85,6 +90,7 @@ static NSManagedObjectContext *context;
     return question;
 }
 
+/* Convert managedObject to question */
 - (Question *)managedObjectToQuestion:(NSManagedObject *)managedObject{
     Question* question = nil;
     

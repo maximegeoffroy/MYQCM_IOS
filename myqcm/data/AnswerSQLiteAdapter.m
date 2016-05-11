@@ -13,6 +13,7 @@
 static AppDelegate *appDelegate;
 static NSManagedObjectContext *context;
 
+/* Constructor of AnswerSQLiteAdapter */
 -(id) init {
     
     self = [super init];
@@ -25,6 +26,7 @@ static NSManagedObjectContext *context;
     
 }
 
+/* Constants */
 + (NSString*) DB_ANSWER_TABLENAME{return @"Answer";}
 + (NSString*) DB_ANSWER_CONTENT{return @"content";}
 + (NSString *)DB_ANSWER_IDSERVER{return @"idServer";}
@@ -33,6 +35,7 @@ static NSManagedObjectContext *context;
 + (NSString*) DB_ANSWER_CREATEDAT{return @"created_at";}
 + (NSString*) DB_ANSWER_UPDATEDAT{return @"updated_at";}
 
+/* Insert answer in database */
 - (NSManagedObject*)insert:(Answer*)answer{
     //GET TABLE
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:AnswerSQLiteAdapter.DB_ANSWER_TABLENAME inManagedObjectContext:context];
@@ -51,6 +54,7 @@ static NSManagedObjectContext *context;
     return managedObject;
 }
 
+/* Get answer by idServer in database */
 - (Answer *)getByIdServer:(int)idServer{
     
     //create a filter
@@ -74,6 +78,7 @@ static NSManagedObjectContext *context;
     return answer;
 }
 
+/* Convert managedObject to answer */
 - (Answer *)managedObjectToAnswer:(NSManagedObject *)managedObject{
     Answer* answer = nil;
     

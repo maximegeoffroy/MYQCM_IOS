@@ -13,6 +13,7 @@
 static AppDelegate *appDelegate;
 static NSManagedObjectContext *context;
 
+/* Constructor of GroupSQLiteAdapter */
 -(id) init {
     
     self = [super init];
@@ -25,12 +26,14 @@ static NSManagedObjectContext *context;
     
 }
 
+/* Constants */
 + (NSString *)DB_GROUP_TABLENAME{return @"Group";}
 + (NSString *)DB_GROUP_NAME{return @"name";}
 + (NSString *)DB_GROUP_IDSERVER{return @"idServer";}
 + (NSString *)DB_GROUP_CREATEDAT{return @"created_at";}
 + (NSString *)DB_GROUP_UPDATEDAT{return @"updated_at";}
 
+/* Insert group in database */
 - (NSManagedObject*)insert:(Group*)group{
     //GET TABLE
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:GroupSQLiteAdapter.DB_GROUP_TABLENAME inManagedObjectContext:context];
@@ -47,6 +50,7 @@ static NSManagedObjectContext *context;
     return managedObject;
 }
 
+/* Get group by name */
 - (NSManagedObject *)getByName:(Group *)group{
     
     //create a filter
@@ -64,11 +68,11 @@ static NSManagedObjectContext *context;
     if (results.count > 0) {
         managedObject = [results objectAtIndex:0];
     }
-    //execute the query
     
     return managedObject;
 }
 
+/* Get group by idServer */
 - (Group *)getByIdServer:(int)idServer{
     
     //create a filter
@@ -92,6 +96,7 @@ static NSManagedObjectContext *context;
     return group;
 }
 
+/* Convert managedObject to Group */
 - (Group*)managedObjectToGroup:(NSManagedObject *)managedObject{
     Group* group = nil;
     
