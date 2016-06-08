@@ -7,27 +7,68 @@
 //
 
 #import "QuestionViewController.h"
+#import "Question.h"
 
 @interface QuestionViewController ()
 
 @end
 
 @implementation QuestionViewController
-@synthesize checkBoxButton, qcm;
+@synthesize qcm;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    checked = NO;
+    self->_labelQuestionName.text = self->qcm.name;
     
-    for (int i = 1; i <= 5; i++)
-    {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"unchecked.jpg"] forState:UIControlStateNormal];
-        [self.view addSubview:button];
+    NSDate* date = [NSDate new];
+    
+    Question* q = [Question new];
+    q.content = @"Quelle est ton sport préféré ?";
+    q.idServer = 1;
+    q.created_at = date;
+    q.updated_at = date;
+    
+    Question* q1 = [Question new];
+    q1.content = @"Quelle est ta matière préférée ?";
+    q1.idServer = 2;
+    q1.created_at = date;
+    q1.updated_at = date;
+    
+    Question* q2 = [Question new];
+    q2.content = @"Quelle est ta ville préférée ?";
+    q2.idServer = 3;
+    q2.created_at = date;
+    q2.updated_at = date;
+    
+    NSMutableArray* questionList = [NSMutableArray new];
+    
+    [questionList addObject:q];
+    [questionList addObject:q1];
+    [questionList addObject:q2];
+    
+    float y= 230.00;
+    
+    for(Question* q in questionList){
+        UISwitch *mySwitch = [[UISwitch alloc] initWithFrame:CGRectMake(130, y, 0, 0)];
+        
+        [mySwitch addTarget:self action:@selector(changeSwitch:) forControlEvents:UIControlEventValueChanged];
+        [self.view addSubview:mySwitch];
+        
+        y = y + 50.0;
     }
-
 }
+
+- (void)changeSwitch:(id)sender{
+    
+    if([sender isOn]){
+        NSLog(@"Switch is ON");
+    } else{
+        NSLog(@"Switch is OFF");
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -43,16 +84,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)checkButton:(id)sender {
-    if (!checked) {
-        [checkBoxButton setImage:[UIImage imageNamed:@"unchecked.jpg"] forState:UIControlStateNormal];
-        checked = YES;
-    }
-    
-    else if (checked){
-        [checkBoxButton setImage:[UIImage imageNamed:@"checked.png"] forState:UIControlStateNormal];
-        checked = NO;
-    }
-}
 @end

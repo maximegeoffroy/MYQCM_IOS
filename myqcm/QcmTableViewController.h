@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryQcm.h"
 
 @interface QcmTableViewController : UITableViewController
 
+@property (nonatomic, strong) CategoryQcm* category;
 @property (nonatomic, strong) NSArray* qcms;
 
 @end

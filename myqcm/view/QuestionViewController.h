@@ -10,11 +10,9 @@
 #import "Qcm.h"
 
 @interface QuestionViewController : UIViewController{
-    BOOL checked;
 }
 
+@property (weak, nonatomic) IBOutlet UILabel *labelQuestionName;
 @property (nonatomic, strong) Qcm *qcm;
-@property (weak, nonatomic) IBOutlet UIButton *checkBoxButton;
-- (IBAction)checkButton:(id)sender;
 
 @end

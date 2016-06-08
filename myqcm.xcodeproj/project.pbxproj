@@ -28,6 +28,7 @@
 		347373851CA1B7060039B05E /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 347373741CA1B7060039B05E /* UIProgressView+AFNetworking.m */; };
 		347373861CA1B7060039B05E /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 347373761CA1B7060039B05E /* UIRefreshControl+AFNetworking.m */; };
 		347373871CA1B7060039B05E /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 347373781CA1B7060039B05E /* UIWebView+AFNetworking.m */; };
+		347D1BE01CF0908800D5BC12 /* ConnexionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D1BDF1CF0908800D5BC12 /* ConnexionViewController.m */; };
 		3484FDF81CC93F2A007F9F86 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484FDF71CC93F2A007F9F86 /* checked.png */; };
 		3484FDFC1CC94323007F9F86 /* unchecked.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3484FDFB1CC94323007F9F86 /* unchecked.jpg */; };
 		348A8E631CC6A34B00E4C3D5 /* CategoryQcmTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348A8E621CC6A34B00E4C3D5 /* CategoryQcmTableViewController.m */; };
@@ -110,6 +111,8 @@
 		347373761CA1B7060039B05E /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		347373771CA1B7060039B05E /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		347373781CA1B7060039B05E /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		347D1BDE1CF0908800D5BC12 /* ConnexionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnexionViewController.h; path = view/ConnexionViewController.h; sourceTree = "<group>"; };
+		347D1BDF1CF0908800D5BC12 /* ConnexionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnexionViewController.m; path = view/ConnexionViewController.m; sourceTree = "<group>"; };
 		3484FDF71CC93F2A007F9F86 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checked.png; path = ../../../../../Downloads/checked.png; sourceTree = "<group>"; };
 		3484FDFB1CC94323007F9F86 /* unchecked.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = unchecked.jpg; path = ../../../../../Downloads/unchecked.jpg; sourceTree = "<group>"; };
 		348A8E611CC6A34B00E4C3D5 /* CategoryQcmTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryQcmTableViewController.h; path = view/CategoryQcmTableViewController.h; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				348A8E6B1CC6CB2400E4C3D5 /* QcmTableViewController.m */,
 				342ED3191CC7FA1F00AE19E5 /* QuestionViewController.h */,
 				342ED31A1CC7FA1F00AE19E5 /* QuestionViewController.m */,
+				347D1BDE1CF0908800D5BC12 /* ConnexionViewController.h */,
+				347D1BDF1CF0908800D5BC12 /* ConnexionViewController.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 				347373811CA1B7060039B05E /* AFNetworkActivityIndicatorManager.m in Sources */,
 				3473737A1CA1B7060039B05E /* AFNetworkReachabilityManager.m in Sources */,
 				34CEF0E31C8DB21B000E9C13 /* AppDelegate.m in Sources */,
+				347D1BE01CF0908800D5BC12 /* ConnexionViewController.m in Sources */,
 				34CEF11B1C8DBE62000E9C13 /* Question.m in Sources */,
 				34CEF0E01C8DB21B000E9C13 /* main.m in Sources */,
 				348E57CF1C8F21BF0082AEA4 /* CategoryQcmSQLiteAdapter.m in Sources */,

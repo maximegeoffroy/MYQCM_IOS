@@ -120,7 +120,7 @@
     NSInteger positionCell = indexCell.row;
     
     self->selectedCategory = [self.categoriesQcm objectAtIndex:positionCell];
-    //vc.c = self->selectedCategory;
+    qtvc.category = self->selectedCategory;
 }
 
 @end

@@ -9,8 +9,11 @@
 #import "QcmTableViewController.h"
 #import "QcmTableViewCell.h"
 #import "Qcm.h"
+#import "QuestionViewController.h"
 
-@interface QcmTableViewController ()
+@interface QcmTableViewController (){
+    Qcm* selectedQcm;
+}
 
 @end
 
@@ -23,7 +26,7 @@
     NSDate* date = [NSDate new];
     
     Qcm* qcm = [Qcm new];
-    qcm.name = @"Android";
+    qcm.name = self->_category.name;
     qcm.idServer = 1;
     qcm.created_at = date;
     qcm.updated_at = date;
@@ -105,14 +108,19 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    QuestionViewController* qvc = segue.destinationViewController;
+    
+    NSIndexPath *indexCell = [self.tableView indexPathForCell:sender];
+    NSInteger positionCell = indexCell.row;
+    
+    self->selectedQcm = [self.qcms objectAtIndex:positionCell];
+    qvc.qcm = self->selectedQcm;
 }
-*/
+
 
 @end

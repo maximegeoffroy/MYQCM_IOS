@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Connexion View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ConnexionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -35,7 +35,7 @@
                                 <rect key="frame" x="264" y="376" width="73" height="30"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
-                                    <segue destination="D4M-PB-fZx" kind="show" id="aBl-BW-XzJ"/>
+                                    <segue destination="D4M-PB-fZx" kind="show" id="ZGR-mV-mKV"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connexion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA5-uR-fYS">
@@ -58,6 +58,11 @@
                             <constraint firstItem="Fzc-GW-7HR" firstAttribute="top" secondItem="omd-AN-71x" secondAttribute="bottom" constant="52" id="oUy-Z6-KNx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonConnexion" destination="SQh-Nl-5DJ" id="H71-oc-H7Y"/>
+                        <outlet property="textFieldPassword" destination="Fzc-GW-7HR" id="jF8-ge-OH2"/>
+                        <outlet property="textFieldUsername" destination="omd-AN-71x" id="nVo-zF-dTA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,33 +134,20 @@
                                 <rect key="frame" x="277" y="379" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbT-nn-QYQ">
-                                <rect key="frame" x="288" y="199" width="25" height="25"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" selected="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="1Ah-jF-L1a"/>
-                                    <constraint firstAttribute="width" constant="25" id="ckb-BT-xtl"/>
-                                </constraints>
-                                <state key="normal" image="checked.png"/>
-                                <connections>
-                                    <action selector="checkButton:" destination="gdj-Ea-smF" eventType="touchUpInside" id="Ak6-Uo-Rde"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="ZpT-UV-EdZ" firstAttribute="centerX" secondItem="iWm-b1-yGL" secondAttribute="centerX" id="F0E-bS-Exd"/>
-                            <constraint firstItem="gbT-nn-QYQ" firstAttribute="centerX" secondItem="uAk-pL-juI" secondAttribute="centerX" id="KkA-At-X17"/>
                             <constraint firstItem="uAk-pL-juI" firstAttribute="top" secondItem="d75-Ju-zWg" secondAttribute="bottom" constant="67" id="R7J-zD-RN2"/>
                             <constraint firstItem="uAk-pL-juI" firstAttribute="centerX" secondItem="ZpT-UV-EdZ" secondAttribute="centerX" id="XN5-SH-v0C"/>
                             <constraint firstItem="uyt-OM-N2m" firstAttribute="top" secondItem="ZpT-UV-EdZ" secondAttribute="bottom" constant="191" id="i7w-rP-APb"/>
-                            <constraint firstItem="gbT-nn-QYQ" firstAttribute="top" secondItem="uAk-pL-juI" secondAttribute="bottom" constant="47" id="jNT-QE-VUv"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="checkBoxButton" destination="gbT-nn-QYQ" id="fAw-zI-dAr"/>
+                        <outlet property="labelQuestionName" destination="uAk-pL-juI" id="j1g-MX-r7T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o3f-Np-tqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -224,7 +216,4 @@
             <point key="canvasLocation" x="145" y="410"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="checked.png" width="512" height="512"/>
-    </resources>
 </document>
