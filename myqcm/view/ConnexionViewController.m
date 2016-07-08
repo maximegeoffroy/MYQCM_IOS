@@ -34,16 +34,7 @@
     
     void (^callback)(User*) = ^(User* user) {
         NSLog(@"Username: %@, email: %@, password: %@",user.username, user.email,user.password);
-        
-//        for(NSDictionary* qcmUser in user.qcmUsers){
-//            QcmUser* newQcmUser = [QcmUser new];
-//            newQcmUser.idServer = [[qcmUser objectForKey:@"id"] intValue];
-//            newQcmUser.is_done = [[qcmUser objectForKey:@"is_done"] boolValue];
-//            newQcmUser.qcm = [qcmUser objectForKey:@"qcm"];
-//            
-//            NSLog(@"Name qcm: %@", newQcmUser.qcm.name);
-//            
-//        }
+
         
     };
     

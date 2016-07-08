@@ -20,7 +20,7 @@
 
 - (NSManagedObject*)insert:(Question*)question;
 - (NSArray*)getAll;
-- (Question *)getByIdServer:(int)idServer;
+- (NSManagedObject *)getByIdServer:(int)idServer;
 - (Question *)managedObjectToQuestion:(NSManagedObject *)managedObject;
 
 @end

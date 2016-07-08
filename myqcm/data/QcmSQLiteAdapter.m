@@ -37,32 +37,46 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_QCM_CREATEDAT{return @"created_at";}
 + (NSString *)DB_QCM_UPDATEDAT{return @"updated_at";}
 + (NSString *)DB_QCM_CATEGORYQCM{return @"categoryqcm";}
++ (NSString *)DB_QCM_IDCATEGORYQCM{return @"idCategory";}
 
 /* Insert qcm in database */
-- (void)insert:(Qcm*)qcm{
-    //GET TABLE
-    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:QcmSQLiteAdapter.DB_QCM_TABLENAME inManagedObjectContext:context];
+- (NSManagedObject*)insert:(Qcm*)qcm{
+    
+    NSManagedObject* q = [self getByIdServerManagedObject:qcm.idServer];
+
+    NSManagedObject* managedObject;
+    
+    if(q != nil){
+        managedObject = q;
+    }else{
+        //GET TABLE
+        NSManagedObject* managedObject = [NSEntityDescription insertNewObjectForEntityForName:QcmSQLiteAdapter.DB_QCM_TABLENAME inManagedObjectContext:context];
     
     
-    //INSERT IN TABLE
-    [managedObject setValue:qcm.name forKey:QcmSQLiteAdapter.DB_QCM_NAME];
-    [managedObject setValue:qcm.start_at forKey:QcmSQLiteAdapter.DB_QCM_STARTAT];
-    [managedObject setValue:qcm.end_at forKey:QcmSQLiteAdapter.DB_QCM_ENDAT];
-    [managedObject setValue:[NSNumber numberWithInt:(qcm.duration)] forKey:QcmSQLiteAdapter.DB_QCM_DURATION];
-    [managedObject setValue:[NSNumber numberWithInt:(qcm.idServer)] forKey:QcmSQLiteAdapter.DB_QCM_IDSERVER];
-    [managedObject setValue:qcm.created_at forKey:QcmSQLiteAdapter.DB_QCM_CREATEDAT];
-    [managedObject setValue:qcm.updated_at forKey:QcmSQLiteAdapter.DB_QCM_UPDATEDAT];
+        //INSERT IN TABLE
+        [managedObject setValue:qcm.name forKey:QcmSQLiteAdapter.DB_QCM_NAME];
+        //[managedObject setValue:qcm.start_at forKey:QcmSQLiteAdapter.DB_QCM_STARTAT];
+        //[managedObject setValue:qcm.end_at forKey:QcmSQLiteAdapter.DB_QCM_ENDAT];
+        [managedObject setValue:[NSNumber numberWithInt:(qcm.duration)] forKey:QcmSQLiteAdapter.DB_QCM_DURATION];
+        [managedObject setValue:[NSNumber numberWithInt:(qcm.idServer)] forKey:QcmSQLiteAdapter.DB_QCM_IDSERVER];
+        [managedObject setValue:[NSNumber numberWithInt:(qcm.idCategory)] forKey:QcmSQLiteAdapter.DB_QCM_IDCATEGORYQCM];
+        //[managedObject setValue:qcm.created_at forKey:QcmSQLiteAdapter.DB_QCM_CREATEDAT];
+        //[managedObject setValue:qcm.updated_at forKey:QcmSQLiteAdapter.DB_QCM_UPDATEDAT];
     
-    if(qcm.categoryQcm!= nil){
-        CategoryQcmSQLiteAdapter* categoryQcmAdapter =[CategoryQcmSQLiteAdapter new];
-        NSManagedObject* categoryManagedObject = [categoryQcmAdapter getByName:qcm.categoryQcm];
-        if(categoryManagedObject == nil){
-            categoryManagedObject = [categoryQcmAdapter insert:qcm.categoryQcm];
+        if(qcm.categoryQcm != nil){
+            CategoryQcmSQLiteAdapter* categoryQcmSqliteAdapter = [CategoryQcmSQLiteAdapter new];
+            CategoryQcm* cat = [categoryQcmSqliteAdapter getByIdServer:qcm.categoryQcm.idServer];
+            
+            if(cat == nil){
+                NSManagedObject* categoryQcmManagedObject = [categoryQcmSqliteAdapter insert:qcm.categoryQcm];
+                [managedObject setValue:categoryQcmManagedObject forKey:@"categoryqcm"];
+            }
         }
-        [managedObject setValue:categoryManagedObject forKey:QcmSQLiteAdapter.DB_QCM_CATEGORYQCM];
+        
+        [appDelegate saveContext];
     }
-    
-    [appDelegate saveContext];
+
+    return managedObject;
 }
 
 /* Get all qcm in database */
@@ -75,10 +89,18 @@ static NSManagedObjectContext *context;
     //get table for request
     fetchRequest.entity = [NSEntityDescription entityForName:QcmSQLiteAdapter.DB_QCM_TABLENAME inManagedObjectContext:context];
     
-    //get all city db object
+    //get all qcm db object
     qcms = [context executeFetchRequest:fetchRequest error:nil];
     
-    return qcms;
+    NSMutableArray* qcmsList = [[NSMutableArray alloc]init];
+    int qcmsArrayCount = [qcms count];
+    for (int i=0; i<qcmsArrayCount; i++) {
+        Qcm* q = [self managedObjectToQcm:qcms[i]];
+        
+        [qcmsList addObject:q];
+    }
+    
+    return qcmsList;
 }
 
 /* Get qcm by idServer in database */
@@ -103,6 +125,33 @@ static NSManagedObjectContext *context;
     Qcm* qcm = [self managedObjectToQcm:managedObject];
     
     return qcm;
+}
+
+/* Get all qcm by idCategory in database */
+- (NSArray *)getAllByCategoryId:(int)idServerCategory{
+    NSArray* qcms = [NSArray new];
+    
+    //create a filter
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idCategory = %d", idServerCategory];
+    
+    //create a query
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:QcmSQLiteAdapter.DB_QCM_TABLENAME];
+    
+    //set the filter on the query
+    request.predicate = predicate;
+    
+    qcms = [context executeFetchRequest:request error:nil];
+    
+    NSMutableArray* qcmsList = [[NSMutableArray alloc]init];
+    int qcmsArrayCount = [qcms count];
+    for (int i=0; i<qcmsArrayCount; i++) {
+        Qcm* q = [self managedObjectToQcm:qcms[i]];
+        
+        [qcmsList addObject:q];
+    }
+    
+    
+    return qcmsList;
 }
 
 /* Get qcm (managedObject) by idServer in database */
@@ -136,8 +185,9 @@ static NSManagedObjectContext *context;
         qcm.name = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_NAME];
         qcm.start_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_STARTAT];
         qcm.end_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_ENDAT];
-        //qcm.duration = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_DURATION];
-        //qcm.idServer = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_IDSERVER];
+        qcm.duration = [[managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_DURATION]intValue];
+        qcm.idServer = [[managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_IDSERVER]intValue];
+        qcm.idCategory = [[managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_IDCATEGORYQCM]intValue];
         qcm.created_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_CREATEDAT];
         qcm.updated_at = [managedObject valueForKey:QcmSQLiteAdapter.DB_QCM_UPDATEDAT];
     }

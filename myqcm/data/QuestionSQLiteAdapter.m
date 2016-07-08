@@ -35,17 +35,26 @@ static NSManagedObjectContext *context;
 
 /* Insert question in database */
 - (NSManagedObject*)insert:(Question*)question{
-    //GET TABLE
-    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:QuestionSQLiteAdapter.DB_QUESTION_TABLENAME inManagedObjectContext:context];
+    
+    NSManagedObject* q = [self getByIdServer:question.idServer];
+    NSManagedObject* managedObject;
+    
+    if(q != nil){
+        managedObject = q;
+    }else{
+    
+        //GET TABLE
+        managedObject = [NSEntityDescription insertNewObjectForEntityForName:QuestionSQLiteAdapter.DB_QUESTION_TABLENAME inManagedObjectContext:context];
     
     
-    //INSERT IN TABLE
-    [managedObject setValue:question.content forKey:QuestionSQLiteAdapter.DB_QUESTION_CONTENT];
-    [managedObject setValue:[NSNumber numberWithInt:(question.idServer)] forKey:QuestionSQLiteAdapter.DB_QUESTION_IDSERVER];
-    [managedObject setValue:question.created_at forKey:QuestionSQLiteAdapter.DB_QUESTION_CREATEDAT];
-    [managedObject setValue:question.updated_at forKey:QuestionSQLiteAdapter.DB_QUESTION_UPDATEDAT];
+        //INSERT IN TABLE
+        [managedObject setValue:question.content forKey:QuestionSQLiteAdapter.DB_QUESTION_CONTENT];
+        [managedObject setValue:[NSNumber numberWithInt:(question.idServer)] forKey:QuestionSQLiteAdapter.DB_QUESTION_IDSERVER];
+        //[managedObject setValue:question.created_at forKey:QuestionSQLiteAdapter.DB_QUESTION_CREATEDAT];
+        //[managedObject setValue:question.updated_at forKey:QuestionSQLiteAdapter.DB_QUESTION_UPDATEDAT];
     
-    [appDelegate saveContext];
+        [appDelegate saveContext];
+    }
     
     return managedObject;
 }
@@ -67,7 +76,7 @@ static NSManagedObjectContext *context;
 }
 
 /* Get question by idServer in database */
-- (Question *)getByIdServer:(int)idServer{
+- (NSManagedObject *)getByIdServer:(int)idServer{
     
     //create a filter
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];

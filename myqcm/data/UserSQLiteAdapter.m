@@ -41,30 +41,41 @@ static NSManagedObjectContext *context;
 + (NSString *)DB_USER_GROUP{return @"group";}
 
 /* Insert user in database */
-- (void)insert:(User*)user{
-    //GET TABLE
-    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:UserSQLiteAdapter.DB_USER_TABLENAME inManagedObjectContext:context];
+- (NSManagedObject*)insert:(User*)user{
     
-    //INSERT IN TABLE
-    [managedObject setValue:user.username forKey:UserSQLiteAdapter.DB_USER_USERNAME];
-    [managedObject setValue:user.password forKey:UserSQLiteAdapter.DB_USER_PASSWORD];
-    [managedObject setValue:user.name forKey:UserSQLiteAdapter.DB_USER_NAME];
-    [managedObject setValue:user.firstname forKey:UserSQLiteAdapter.DB_USER_FIRSTNAME];
-    [managedObject setValue:user.email forKey:UserSQLiteAdapter.DB_USER_EMAIL];
-    [managedObject setValue:[NSNumber numberWithInt:(user.idServer)] forKey:UserSQLiteAdapter.DB_USER_IDSERVER];
-    [managedObject setValue:user.created_at forKey:UserSQLiteAdapter.DB_USER_DATECREATED];
-    [managedObject setValue:user.updated_at forKey:UserSQLiteAdapter.DB_USER_DATEUPDATED];
+    NSManagedObject* u = [self getByIdServerManagedObject:user.idServer];
     
-    if(user.group != nil){
-        GroupSQLiteAdapter* groupAdapter = [GroupSQLiteAdapter new];
-        NSManagedObject* groupManagedObject = [groupAdapter getByName:user.group];
-        if(groupManagedObject == nil){
-            groupManagedObject = [groupAdapter insert:user.group];
+    NSManagedObject* managedObject;
+    
+    if(u != nil){
+        managedObject = u;
+    }else{
+        //GET TABLE
+        managedObject = [NSEntityDescription insertNewObjectForEntityForName:UserSQLiteAdapter.DB_USER_TABLENAME inManagedObjectContext:context];
+    
+        //INSERT IN TABLE
+        [managedObject setValue:user.username forKey:UserSQLiteAdapter.DB_USER_USERNAME];
+        [managedObject setValue:user.password forKey:UserSQLiteAdapter.DB_USER_PASSWORD];
+        [managedObject setValue:user.name forKey:UserSQLiteAdapter.DB_USER_NAME];
+        [managedObject setValue:user.firstname forKey:UserSQLiteAdapter.DB_USER_FIRSTNAME];
+        [managedObject setValue:user.email forKey:UserSQLiteAdapter.DB_USER_EMAIL];
+        [managedObject setValue:[NSNumber numberWithInt:(user.idServer)] forKey:UserSQLiteAdapter.DB_USER_IDSERVER];
+        [managedObject setValue:user.created_at forKey:UserSQLiteAdapter.DB_USER_DATECREATED];
+        [managedObject setValue:user.updated_at forKey:UserSQLiteAdapter.DB_USER_DATEUPDATED];
+    
+        if(user.group != nil){
+            GroupSQLiteAdapter* groupAdapter = [GroupSQLiteAdapter new];
+            NSManagedObject* groupManagedObject = [groupAdapter getByName:user.group];
+            if(groupManagedObject == nil){
+                groupManagedObject = [groupAdapter insert:user.group];
+            }
+            [managedObject setValue:groupManagedObject forKey:UserSQLiteAdapter.DB_USER_GROUP];
         }
-        [managedObject setValue:groupManagedObject forKey:UserSQLiteAdapter.DB_USER_GROUP];
+    
+        [appDelegate saveContext];
     }
     
-    [appDelegate saveContext];
+    return managedObject;
 }
 
 /* Get user by username in database */

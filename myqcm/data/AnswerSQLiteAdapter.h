@@ -22,7 +22,7 @@
 
 
 - (NSManagedObject*)insert:(Answer*)answer;
-- (Answer *)getByIdServer:(int)idServer;
+- (NSManagedObject *)getByIdServer:(int)idServer;
 - (Answer *)managedObjectToAnswer:(NSManagedObject *)managedObject;
 
 @end

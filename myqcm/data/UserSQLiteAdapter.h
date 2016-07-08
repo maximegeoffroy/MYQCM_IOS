@@ -23,7 +23,7 @@
 + (NSString*) DB_USER_DATEUPDATED;
 + (NSString*) DB_USER_GROUP;
 
-- (void)insert:(User*)user;
+- (NSManagedObject*)insert:(User*)user;
 - (User *)getByUsername:(NSString *)username;
 - (User *)getByIdServer:(int)idServer;
 - (NSManagedObject *)getByIdServerManagedObject:(int)idServer;

@@ -18,6 +18,7 @@
 @property (nonatomic) int idServer;
 @property (nonatomic, strong) NSDate* created_at;
 @property (nonatomic, strong) NSDate* updated_at;
+@property (nonatomic) int idCategory;
 @property (nonatomic, strong) CategoryQcm* categoryQcm;
 @property (nonatomic, strong) NSArray* qcmUsers;
 @property (nonatomic, strong) NSArray* questions;

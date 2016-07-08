@@ -10,6 +10,7 @@
 #import "QcmTableViewCell.h"
 #import "Qcm.h"
 #import "QuestionViewController.h"
+#import "QcmSQLiteAdapter.h"
 
 @interface QcmTableViewController (){
     Qcm* selectedQcm;
@@ -23,21 +24,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDate* date = [NSDate new];
+    QcmSQLiteAdapter* adapter = [QcmSQLiteAdapter new];
     
-    Qcm* qcm = [Qcm new];
-    qcm.name = self->_category.name;
-    qcm.idServer = 1;
-    qcm.created_at = date;
-    qcm.updated_at = date;
+    int idServer = self.category.idServer;
     
-    Qcm* qcm1 = [Qcm new];
-    qcm1.name = @"IOS";
-    qcm1.idServer = 2;
-    qcm1.created_at = date;
-    qcm1.updated_at = date;
+    NSArray* array = [adapter getAllByCategoryId:self.category.idServer];
     
-    self.qcms = [NSArray arrayWithObjects:qcm,qcm1,nil];
+    Qcm* q = [adapter getByIdServer:1];
+    
+    //NSArray* array = [adapter getAll];
+    
+    for (int i=0; i<sizeof(array); i++) {
+        //NSLog(@"ID CAT : %d", ((Qcm*)[array objectAtIndex:i]).categoryQcm.idServer);
+    }
+    
+    self.qcms = array;
 }
 
 - (void)didReceiveMemoryWarning {

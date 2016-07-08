@@ -37,25 +37,34 @@ static NSManagedObjectContext *context;
 
 /* Insert answer in database */
 - (NSManagedObject*)insert:(Answer*)answer{
-    //GET TABLE
-    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:AnswerSQLiteAdapter.DB_ANSWER_TABLENAME inManagedObjectContext:context];
     
+    NSManagedObject* a = [self getByIdServer:answer.idServer];
     
-    //INSERT IN TABLE
-    [managedObject setValue:answer.content forKey:AnswerSQLiteAdapter.DB_ANSWER_CONTENT];
-    [managedObject setValue:[NSNumber numberWithInt:(answer.idServer)] forKey:AnswerSQLiteAdapter.DB_ANSWER_IDSERVER];
-    [managedObject setValue:[NSNumber numberWithInt:(answer.point)] forKey:AnswerSQLiteAdapter.DB_ANSWER_POINT];
-    //[managedObject setValue:answer.is_valid forKey:AnswerSQLiteAdapter.DB_ANSWER_ISVALID];
-    [managedObject setValue:answer.created_at forKey:AnswerSQLiteAdapter.DB_ANSWER_CREATEDAT];
-    [managedObject setValue:answer.updated_at forKey:AnswerSQLiteAdapter.DB_ANSWER_UPDATEDAT];
+    NSManagedObject* managedObject;
     
-    [appDelegate saveContext];
+    if(a != nil){
+        managedObject = a;
+    }else{
+        //GET TABLE
+         managedObject = [NSEntityDescription insertNewObjectForEntityForName:AnswerSQLiteAdapter.DB_ANSWER_TABLENAME inManagedObjectContext:context];
+        
+        
+        //INSERT IN TABLE
+        [managedObject setValue:answer.content forKey:AnswerSQLiteAdapter.DB_ANSWER_CONTENT];
+        [managedObject setValue:[NSNumber numberWithInt:(answer.idServer)] forKey:AnswerSQLiteAdapter.DB_ANSWER_IDSERVER];
+        [managedObject setValue:[NSNumber numberWithInt:(answer.point)] forKey:AnswerSQLiteAdapter.DB_ANSWER_POINT];
+        //[managedObject setValue:answer.is_valid forKey:AnswerSQLiteAdapter.DB_ANSWER_ISVALID];
+        //[managedObject setValue:answer.created_at forKey:AnswerSQLiteAdapter.DB_ANSWER_CREATEDAT];
+        //[managedObject setValue:answer.updated_at forKey:AnswerSQLiteAdapter.DB_ANSWER_UPDATEDAT];
+        
+        [appDelegate saveContext];
+    }
     
     return managedObject;
 }
 
 /* Get answer by idServer in database */
-- (Answer *)getByIdServer:(int)idServer{
+- (NSManagedObject *)getByIdServer:(int)idServer{
     
     //create a filter
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"idServer = %d", idServer];
@@ -73,9 +82,9 @@ static NSManagedObjectContext *context;
         managedObject = [results objectAtIndex:0];
     }
     
-    Answer* answer = [self managedObjectToAnswer:managedObject];
+    //Answer* answer = [self managedObjectToAnswer:managedObject];
     
-    return answer;
+    return managedObject;
 }
 
 /* Convert managedObject to answer */

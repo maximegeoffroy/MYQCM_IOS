@@ -11,6 +11,11 @@
 #import "QcmUser.h"
 #import "Question.h"
 #import "Answer.h"
+#import "QcmUserSQLiteAdapter.h"
+#import "AnswerSQLiteAdapter.h"
+#import "QuestionSQLiteAdapter.h"
+#import "QcmSQLiteAdapter.h"
+#import "CategoryQcmSQLiteAdapter.h"
 
 @implementation UserWebserviceAdapter
 
@@ -27,7 +32,7 @@
 - (void)getUser:(NSString*)name andCallback:(void (^)(User *))callback{
     AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
     
-    NSString* startUrl = @"http://192.168.1.88/myQCM/web/app_dev.php/api/users/";
+    NSString* startUrl = @"http://172.20.10.2/myQCM/web/app_dev.php/api/users/";
     NSString* endUrl = name;
     
     NSString* url = [NSString stringWithFormat: @"%@%@", startUrl, endUrl];
@@ -39,6 +44,7 @@
         callback(user);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"ERROR: %@", error);
         //Callback
         callback(nil);
     }];
@@ -51,7 +57,7 @@
     if(json != nil){
         user = [User new];
         //NSArray* userArray = [json objectForKey:UserWebserviceAdapter.JSON_USER];
-        NSDictionary* userDic = [json objectForKey:UserWebserviceAdapter.JSON_USER];
+        NSDictionary* userDic = json;//[json objectForKey:UserWebserviceAdapter.JSON_USER];
         
         user.username = [userDic objectForKey:UserWebserviceAdapter.JSON_USER_USERNAME];
         user.email = [userDic objectForKey:UserWebserviceAdapter.JSON_USER_EMAIL];
@@ -60,13 +66,21 @@
         user.updated_at = [userDic objectForKey:UserWebserviceAdapter.JSON_USER_UPDATEDAT];
         user.qcmUsers = [userDic objectForKey:UserWebserviceAdapter.JSON_USER_USERQCMS];
         
-        for (int i=1; i<sizeof(user.qcmUsers); i++) {
+        
+        QcmUserSQLiteAdapter* qcmUserSQLiteAdapter = [QcmUserSQLiteAdapter new];
+        QcmSQLiteAdapter* qcmSQLiteAdapter = [QcmSQLiteAdapter new];
+        //CategoryQcmSQLiteAdapter* categoryQcmSQLiteAdapter = [CategoryQcmSQLiteAdapter new];
+
+        int countQcmsUserArray = [user.qcmUsers count];
+        for (int i=0; i<countQcmsUserArray; i++) {
             QcmUser* qcmUser = [QcmUser new];
             NSDictionary* qcmUserDic = [user.qcmUsers objectAtIndex:i];
             
             qcmUser.idServer = [[qcmUserDic objectForKey:@"id"]intValue];
             qcmUser.is_done = [[qcmUserDic objectForKey:@"is_done"]boolValue];
             qcmUser.note = [[qcmUserDic objectForKey:@"note"]floatValue];
+            
+            //[qcmUserSQLiteAdapter insert:qcmUser];
             
             NSDictionary* qcmDic = [qcmUserDic objectForKey:@"qcm"];
             Qcm* qcm = [Qcm new];
@@ -86,7 +100,16 @@
             categoryQcm.created_at = [categoryQcmDic objectForKey:@"created_at"];
             categoryQcm.updated_at = [categoryQcmDic objectForKey:@"updated_at"];
             
+            qcm.idCategory = categoryQcm.idServer;
+            
+            //[categoryQcmSQLiteAdapter insert:categoryQcm];
+            
             qcm.categoryQcm = categoryQcm;
+            
+            [qcmSQLiteAdapter insert:qcm];
+            
+            QuestionSQLiteAdapter* questionSQLiteAdapter = [QuestionSQLiteAdapter new];
+            AnswerSQLiteAdapter* answerSQLiteAdapter = [AnswerSQLiteAdapter new];
             
             NSArray* questionsArray = [qcmDic objectForKey:@"questions"];
             int countQuestionArray = [questionsArray count];
@@ -97,6 +120,8 @@
                 question.content = [questionDic objectForKey:@"content"];
                 question.created_at = [questionDic objectForKey:@"created_at"];
                 question.updated_at = [questionDic objectForKey:@"updated_at"];
+                
+                [questionSQLiteAdapter insert:question];
                 
                 NSArray* answersArray = [questionDic objectForKey:@"answers"];
                 int countAnswerArray = [answersArray count];
@@ -109,6 +134,8 @@
                     answer.is_valid = [[answerDic objectForKey:@"is_valid"]boolValue];
                     answer.created_at = [answerDic objectForKey:@"created_at"];
                     answer.updated_at = [answerDic objectForKey:@"updated_at"];
+                    
+                    [answerSQLiteAdapter insert:answer];
                 }
             }
         }

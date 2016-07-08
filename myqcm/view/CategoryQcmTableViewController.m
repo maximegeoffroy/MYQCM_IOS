@@ -10,9 +10,10 @@
 #import "CategoryQcmTableViewCell.h"
 #import "QcmTableViewController.h"
 #import "CategoryQcm.h"
+#import "CategoryQcmSQLiteAdapter.h"
 
 @interface CategoryQcmTableViewController (){
-    CategoryQcm* selectedCategory;
+    NSManagedObject* selectedCategory;
 }
 @end
 
@@ -22,21 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDate* date = [NSDate new];
+    CategoryQcmSQLiteAdapter* adapter = [CategoryQcmSQLiteAdapter new];
     
-    CategoryQcm* categoryQcm = [CategoryQcm new];
-    categoryQcm.name = @"Developpement";
-    categoryQcm.idServer = 1;
-    categoryQcm.created_at = date;
-    categoryQcm.updated_at = date;
+    NSArray* array = [adapter getAll];
     
-    CategoryQcm* categoryQcm1 = [CategoryQcm new];
-    categoryQcm1.name = @"Gestion de projet";
-    categoryQcm1.idServer = 2;
-    categoryQcm1.created_at = date;
-    categoryQcm1.updated_at = date;
-    
-    self.categoriesQcm = [NSArray arrayWithObjects:categoryQcm,categoryQcm1,nil];
+    self.categoriesQcm = array;
 }
 
 - (void)didReceiveMemoryWarning {

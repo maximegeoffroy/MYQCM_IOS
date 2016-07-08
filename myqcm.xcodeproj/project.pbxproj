@@ -29,8 +29,6 @@
 		347373861CA1B7060039B05E /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 347373761CA1B7060039B05E /* UIRefreshControl+AFNetworking.m */; };
 		347373871CA1B7060039B05E /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 347373781CA1B7060039B05E /* UIWebView+AFNetworking.m */; };
 		347D1BE01CF0908800D5BC12 /* ConnexionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347D1BDF1CF0908800D5BC12 /* ConnexionViewController.m */; };
-		3484FDF81CC93F2A007F9F86 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3484FDF71CC93F2A007F9F86 /* checked.png */; };
-		3484FDFC1CC94323007F9F86 /* unchecked.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3484FDFB1CC94323007F9F86 /* unchecked.jpg */; };
 		348A8E631CC6A34B00E4C3D5 /* CategoryQcmTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 348A8E621CC6A34B00E4C3D5 /* CategoryQcmTableViewController.m */; };
 		348A8E661CC6A49100E4C3D5 /* CategoryQcmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348A8E651CC6A49100E4C3D5 /* CategoryQcmTableViewCell.m */; };
 		348A8E691CC6CAFA00E4C3D5 /* QcmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 348A8E681CC6CAFA00E4C3D5 /* QcmTableViewCell.m */; };
@@ -113,8 +111,6 @@
 		347373781CA1B7060039B05E /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		347D1BDE1CF0908800D5BC12 /* ConnexionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConnexionViewController.h; path = view/ConnexionViewController.h; sourceTree = "<group>"; };
 		347D1BDF1CF0908800D5BC12 /* ConnexionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConnexionViewController.m; path = view/ConnexionViewController.m; sourceTree = "<group>"; };
-		3484FDF71CC93F2A007F9F86 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checked.png; path = ../../../../../Downloads/checked.png; sourceTree = "<group>"; };
-		3484FDFB1CC94323007F9F86 /* unchecked.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = unchecked.jpg; path = ../../../../../Downloads/unchecked.jpg; sourceTree = "<group>"; };
 		348A8E611CC6A34B00E4C3D5 /* CategoryQcmTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryQcmTableViewController.h; path = view/CategoryQcmTableViewController.h; sourceTree = "<group>"; };
 		348A8E621CC6A34B00E4C3D5 /* CategoryQcmTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryQcmTableViewController.m; path = view/CategoryQcmTableViewController.m; sourceTree = "<group>"; };
 		348A8E641CC6A49100E4C3D5 /* CategoryQcmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryQcmTableViewCell.h; path = view/CategoryQcmTableViewCell.h; sourceTree = "<group>"; };
@@ -265,8 +261,6 @@
 		34CEF0DD1C8DB21B000E9C13 /* myqcm */ = {
 			isa = PBXGroup;
 			children = (
-				3484FDFB1CC94323007F9F86 /* unchecked.jpg */,
-				3484FDF71CC93F2A007F9F86 /* checked.png */,
 				347373551CA1B6420039B05E /* libs */,
 				347373511CA1B4850039B05E /* webservice */,
 				34CEF1081C8DB50C000E9C13 /* view */,
@@ -447,8 +441,6 @@
 			files = (
 				34CEF0F11C8DB21B000E9C13 /* LaunchScreen.storyboard in Resources */,
 				34CEF0EE1C8DB21B000E9C13 /* Assets.xcassets in Resources */,
-				3484FDF81CC93F2A007F9F86 /* checked.png in Resources */,
-				3484FDFC1CC94323007F9F86 /* unchecked.jpg in Resources */,
 				34CEF0E91C8DB21B000E9C13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

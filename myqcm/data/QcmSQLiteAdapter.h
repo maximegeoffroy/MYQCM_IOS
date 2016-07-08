@@ -22,9 +22,10 @@
 + (NSString *)DB_QCM_UPDATEDAT;
 + (NSString *)DB_QCM_CATEGORYQCM;
 
-- (void)insert:(Qcm*)qcm;
+- (NSManagedObject*)insert:(Qcm*)qcm;
 - (NSArray*)getAll;
-- (Qcm *)getByIdServer:(int)idServer;
+- (Qcm*)getByIdServer:(int)idServer;
+- (NSArray *)getAllByCategoryId:(int)idCategory;
 - (NSManagedObject *)getByIdServerManagedObject:(int)idServer;
 - (Qcm *)managedObjectToQcm:(NSManagedObject *)managedObject;
 

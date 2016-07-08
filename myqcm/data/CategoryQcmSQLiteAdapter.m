@@ -37,16 +37,25 @@ static NSManagedObjectContext *context;
 
 /* Insert categoryQcm in database */
 - (NSManagedObject*)insert:(CategoryQcm *)categoryQcm{
-    //GET TABLE
-    NSManagedObject* managedObject = [NSEntityDescription insertNewObjectForEntityForName:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_TABLENAME inManagedObjectContext:context];
     
-    //INSERT IN TABLE
-    [managedObject setValue:categoryQcm.name forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_NAME];
-    [managedObject setValue:[NSNumber numberWithInt:(categoryQcm.idServer)] forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_IDSERVER];
-    [managedObject setValue:categoryQcm.created_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATECREATED];
-    [managedObject setValue:categoryQcm.updated_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATEUPDATED];
+//    NSManagedObject* c = [self getByIdServer:categoryQcm.idServer];
+//    
+//    NSManagedObject* managedObject;
+//    
+//    if(c != nil){
+//        managedObject = c;
+//    }else{
+        //GET TABLE
+        NSManagedObject* managedObject = [NSEntityDescription insertNewObjectForEntityForName:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_TABLENAME inManagedObjectContext:context];
     
-    [appDelegate saveContext];
+        //INSERT IN TABLE
+        [managedObject setValue:categoryQcm.name forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_NAME];
+        [managedObject setValue:[NSNumber numberWithInt:(categoryQcm.idServer)] forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_IDSERVER];
+        //[managedObject setValue:categoryQcm.created_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATECREATED];
+        //[managedObject setValue:categoryQcm.updated_at forKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATEUPDATED];
+    
+        [appDelegate saveContext];
+    //}
     
     return managedObject;
 }
@@ -121,7 +130,7 @@ static NSManagedObjectContext *context;
     if(managedObject != nil){
         categoryQcm = [CategoryQcm new];
         categoryQcm.name = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_NAME];
-        //categoryQcm.idServer = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_IDSERVER];
+        categoryQcm.idServer = [[managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_IDSERVER] floatValue];
         categoryQcm.created_at = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATECREATED];
         categoryQcm.updated_at = [managedObject valueForKey:CategoryQcmSQLiteAdapter.DB_CATEGORYQCM_DATEUPDATED];
     }

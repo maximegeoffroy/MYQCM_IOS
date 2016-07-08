@@ -27,6 +27,7 @@
         <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="end_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="idCategory" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="idServer" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start_at" optional="YES" attributeType="Date" syncable="YES"/>
@@ -66,7 +67,7 @@
         <element name="Answer" positionX="63" positionY="63" width="128" height="150"/>
         <element name="CategoryQcm" positionX="36" positionY="54" width="128" height="120"/>
         <element name="Group" positionX="43" positionY="-117" width="128" height="120"/>
-        <element name="Qcm" positionX="45" positionY="45" width="128" height="195"/>
+        <element name="Qcm" positionX="45" positionY="45" width="128" height="210"/>
         <element name="QcmUser" positionX="81" positionY="72" width="128" height="120"/>
         <element name="Question" positionX="54" positionY="54" width="128" height="135"/>
         <element name="User" positionX="36" positionY="108" width="128" height="195"/>
